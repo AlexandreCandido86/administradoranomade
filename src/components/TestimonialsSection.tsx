@@ -1,45 +1,47 @@
 import { Quote } from "lucide-react";
+import { useContentValue } from "@/hooks/useSiteContent";
 
-const testimonials = [
-  {
-    text: "A Nômade transformou a administração do nosso condomínio. Relatórios claros, atendimento ágil e total transparência nas finanças. Recomendo com toda a certeza!",
-    name: "Carlos Mendes",
-    role: "Síndico - Condomínio Solar das Flores",
-  },
-  {
-    text: "Equipe fantástica e sempre disponível. Finalmente temos uma administradora que faz parceria de verdade. O apoio nas assembleias é excelente.",
-    name: "Ana Beatriz Silva",
-    role: "Síndica - Residencial Alvorada",
-  },
-  {
-    text: "Profissionalismo acima de tudo. A Nômade cuida do nosso condomínio com organização e atenção que nunca tivemos antes. Estamos muito satisfeitos.",
-    name: "Roberto Ferreira",
-    role: "Síndico - Condomínio Jardim Europa",
-  },
-];
+const TestimonialsSection = () => {
+  const label = useContentValue("testimonials", "label", "〰〰 Depoimentos 〰〰");
+  const title = useContentValue("testimonials", "title", "Síndicos que confiam na Nômade");
+  const t1Text = useContentValue("testimonials", "testimonial_1_text", "A Nômade transformou a administração do nosso condomínio. Relatórios claros, atendimento ágil e total transparência nas finanças. Recomendo com toda a certeza!");
+  const t1Name = useContentValue("testimonials", "testimonial_1_name", "Carlos Mendes");
+  const t1Role = useContentValue("testimonials", "testimonial_1_role", "Síndico - Condomínio Solar das Flores");
+  const t2Text = useContentValue("testimonials", "testimonial_2_text", "Equipe fantástica e sempre disponível. Finalmente temos uma administradora que faz parceria de verdade. O apoio nas assembleias é excelente.");
+  const t2Name = useContentValue("testimonials", "testimonial_2_name", "Ana Beatriz Silva");
+  const t2Role = useContentValue("testimonials", "testimonial_2_role", "Síndica - Residencial Alvorada");
+  const t3Text = useContentValue("testimonials", "testimonial_3_text", "Profissionalismo acima de tudo. A Nômade cuida do nosso condomínio com organização e atenção que nunca tivemos antes. Estamos muito satisfeitos.");
+  const t3Name = useContentValue("testimonials", "testimonial_3_name", "Roberto Ferreira");
+  const t3Role = useContentValue("testimonials", "testimonial_3_role", "Síndico - Condomínio Jardim Europa");
 
-const TestimonialsSection = () => (
-  <section className="py-20 bg-background">
-    <div className="container mx-auto px-4">
-      <div className="text-center mb-12">
-        <p className="section-label mb-2">〰〰 Depoimentos 〰〰</p>
-        <h2 className="section-title">Síndicos que confiam na Nômade</h2>
-      </div>
+  const testimonials = [
+    { text: t1Text, name: t1Name, role: t1Role },
+    { text: t2Text, name: t2Name, role: t2Role },
+    { text: t3Text, name: t3Name, role: t3Role },
+  ];
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {testimonials.map((t) => (
-          <div key={t.name} className="bg-card border border-border rounded-lg p-6 relative">
-            <Quote className="w-8 h-8 text-primary/30 mb-4" />
-            <p className="text-muted-foreground leading-relaxed mb-6 italic">"{t.text}"</p>
-            <div>
-              <p className="font-semibold text-foreground">{t.name}</p>
-              <p className="text-sm text-muted-foreground">{t.role}</p>
+  return (
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <p className="section-label mb-2">{label}</p>
+          <h2 className="section-title">{title}</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {testimonials.map((t) => (
+            <div key={t.name} className="bg-card border border-border rounded-lg p-6 relative">
+              <Quote className="w-8 h-8 text-primary/30 mb-4" />
+              <p className="text-muted-foreground leading-relaxed mb-6 italic">"{t.text}"</p>
+              <div>
+                <p className="font-semibold text-foreground">{t.name}</p>
+                <p className="text-sm text-muted-foreground">{t.role}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default TestimonialsSection;
