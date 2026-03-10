@@ -35,7 +35,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-4">
-          <a href="#" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/admin/login" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <User className="w-4 h-4" />
             Área Admin
           </a>
