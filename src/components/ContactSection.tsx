@@ -12,22 +12,22 @@ const ContactSection = () => {
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
 
   return (
-    <section id="contato" className="py-20 bg-dark-surface">
+    <section id="contato" className="py-20 bg-white">
       <div className="container mx-auto px-4 text-center">
-        <p className="section-label mb-2">〰〰 {label}</p>
-        <h2 className="section-title mb-6">{title}</h2>
+        <p className="text-primary text-sm font-semibold tracking-[0.25em] uppercase mb-2">〰〰 {label}</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">{title}</h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
           <div className="flex items-center gap-3">
             <Phone className="w-5 h-5 text-primary" />
-            <span className="text-muted-foreground">{phone}</span>
+            <span className="text-black">{phone}</span>
           </div>
           <div className="flex items-center gap-3">
             <Mail className="w-5 h-5 text-primary" />
-            <span className="text-muted-foreground">{email}</span>
+            <span className="text-black">{email}</span>
           </div>
           <div className="flex items-center gap-3">
             <MapPin className="w-5 h-5 text-primary" />
-            <span className="text-muted-foreground">São Paulo, SP</span>
+            <span className="text-black">São Paulo, SP</span>
           </div>
         </div>
         <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 gap-2">
