@@ -12,7 +12,7 @@ const ContactSection = () => {
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
 
   return (
-    <section id="contato" className="py-20 bg-white">
+    <section id="contato" className="py-20 bg-primary">
       <div className="container mx-auto px-4 text-center">
         <p className="text-primary text-sm font-semibold tracking-[0.25em] uppercase mb-2">〰〰 {label}</p>
         <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">{title}</h2>
