@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import { useContentValue } from "@/hooks/useSiteContent";
 
 const navItems = [
   { label: "Início", href: "/" },
@@ -15,6 +16,8 @@ const navItems = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
+  const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -44,9 +47,11 @@ const Navbar = () => {
             <User className="w-4 h-4" />
             Área Admin
           </Link>
-          <Button className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2">
-            <MessageCircle className="w-4 h-4" />
-            CONDOMÍNIO ONLINE
+          <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="w-4 h-4" />
+              CONDOMÍNIO ONLINE
+            </a>
           </Button>
         </div>
 
@@ -62,9 +67,11 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <Button className="mt-4 w-full bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2">
-            <MessageCircle className="w-4 h-4" />
-            CONDOMÍNIO ONLINE
+          <Button asChild className="mt-4 w-full bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="w-4 h-4" />
+              CONDOMÍNIO ONLINE
+            </a>
           </Button>
         </div>
       )}
