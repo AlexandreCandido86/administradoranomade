@@ -8,6 +8,8 @@ const ContactSection = () => {
   const title = useContentValue("contact", "title", "Entre em contato com nossa equipe comercial e solicite orçamento para o seu condomínio.");
   const phone = useContentValue("contact", "phone", "(11) 99999-9999");
   const email = useContentValue("contact", "email", "contato@nomade.com.br");
+  const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
+  const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
 
   return (
     <section id="contato" className="py-20 bg-dark-surface">
