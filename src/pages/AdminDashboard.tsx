@@ -181,6 +181,7 @@ const AdminDashboard = () => {
   const { toast } = useToast();
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [initialized, setInitialized] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Initialize form values: DB values take priority, then defaults
   if (contentData && !initialized) {
