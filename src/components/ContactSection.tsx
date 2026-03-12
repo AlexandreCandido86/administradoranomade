@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+
 import { useContentValue } from "@/hooks/useSiteContent";
 
 const ContactSection = () => {
@@ -8,6 +8,8 @@ const ContactSection = () => {
   const title = useContentValue("contact", "title", "Entre em contato com nossa equipe comercial e solicite orçamento para o seu condomínio.");
   const phone = useContentValue("contact", "phone", "(11) 99999-9999");
   const email = useContentValue("contact", "email", "contato@nomade.com.br");
+  const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
+  const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
 
   return (
     <section id="contato" className="py-20 bg-dark-surface">
@@ -29,7 +31,7 @@ const ContactSection = () => {
           </div>
         </div>
         <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 gap-2">
-          <Link to="/contato"><MessageCircle className="w-4 h-4" /> FALE CONOSCO</Link>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4" /> FALE PELO WHATSAPP</a>
         </Button>
       </div>
     </section>
