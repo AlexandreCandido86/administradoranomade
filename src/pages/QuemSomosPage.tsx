@@ -56,7 +56,7 @@ const QuemSomosPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <img src={mainImage} alt="Gestão condominial profissional" className="rounded-lg w-full object-cover max-h-[500px]" />
+              {mainImage && <img src={mainImage} alt="Gestão condominial profissional" className="rounded-lg w-full object-cover max-h-[500px]" />}
               <div className="absolute bottom-6 left-6 bg-primary text-primary-foreground p-4 rounded-lg">
                 <p className="text-3xl font-bold">{stat4Num}</p>
                 <p className="text-sm"> experiência</p>

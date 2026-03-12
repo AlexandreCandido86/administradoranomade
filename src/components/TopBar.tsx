@@ -1,7 +1,7 @@
 import { Phone, Mail } from "lucide-react";
 
 const TopBar = () => (
-  <div className="bg-background border-b border-border">
+  <div className="hidden md:block bg-background border-b border-border">
     <div className="container mx-auto flex items-center justify-between py-2 px-4 text-sm">
       <div className="flex items-center gap-6">
         <a href="tel:+5511999999999" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
