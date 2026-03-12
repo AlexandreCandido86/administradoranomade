@@ -19,7 +19,7 @@ const HeroSection = () => {
   return (
     <section id="inicio" className="relative min-h-[80vh] flex items-center">
       <div className="absolute inset-0">
-        <img src={bgImage} alt="Cidade ao pôr do sol" className="w-full h-full object-cover" />
+        {bgImage && <img src={bgImage} alt="Cidade ao pôr do sol" className="w-full h-full object-cover" />}
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
       </div>
 
