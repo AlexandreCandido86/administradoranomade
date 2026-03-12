@@ -31,11 +31,11 @@ const QuemSomosPage = () => {
 
   const features = [feature1, feature2, feature3, feature4];
   const stats = [
-    { number: stat1Num, label: stat1Label },
-    { number: stat2Num, label: stat2Label },
-    { number: stat3Num, label: stat3Label },
-    { number: stat4Num, label: stat4Label },
-  ];
+  { number: stat1Num, label: stat1Label },
+  { number: stat2Num, label: stat2Label },
+  { number: stat3Num, label: stat3Label },
+  { number: stat4Num, label: stat4Label }];
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -65,12 +65,12 @@ const QuemSomosPage = () => {
             <div>
               <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
               <ul className="space-y-4 mb-8">
-                {features.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-foreground">
+                {features.map((f) =>
+                <li key={f} className="flex items-center gap-3 text-foreground">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                     {f}
                   </li>
-                ))}
+                )}
               </ul>
             </div>
           </div>
@@ -98,22 +98,22 @@ const QuemSomosPage = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p className="stat-number">{s.number}</p>
-                <p className="stat-label">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
+
+
+
+
+
+
+
+
+
+
+      
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 };
 
 export default QuemSomosPage;
