@@ -18,21 +18,21 @@ const AboutSection = () => {
   const features = [feature1, feature2, feature3, feature4];
 
   return (
-    <section id="quem-somos" className="py-20 bg-white">
+    <section id="quem-somos" className="py-20 bg-dark-surface bg-[#f7f7f7]">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <img src={mainImage} alt="Gestão condominial profissional" className="rounded-lg w-full object-cover max-h-[500px]" />
             <div className="absolute bottom-6 left-6 bg-primary text-primary-foreground p-4 rounded-lg">
               <p className="text-3xl font-bold">{stat4Num}</p>
-              <p className="text-sm">anos de experiência</p>
+              <p className="text-sm"> experiência</p>
             </div>
           </div>
 
           <div>
             <p className="section-label mb-2">{label}</p>
             <h2 className="section-title mb-6 text-black">{title}</h2>
-            <p className="text-black leading-relaxed mb-8">{description}</p>
+            <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
             <ul className="space-y-4 mb-8">
               {features.map((f) =>
               <li key={f} className="flex items-center gap-3 text-black">
