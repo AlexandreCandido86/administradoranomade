@@ -13,6 +13,7 @@ const AboutSection = () => {
   const feature3 = useContentValue("about", "feature_3", "Tecnologia a serviço da sua comunidade");
   const feature4 = useContentValue("about", "feature_4", "Suporte dedicado ao síndico profissional");
   const stat4Num = useContentValue("about", "stat_4_number", "Muito+");
+  const stat4Label = useContentValue("about", "stat_4_label", "experiência");
   const mainImage = useImageValue("about", "main", aboutImg);
 
   const features = [feature1, feature2, feature3, feature4];
@@ -25,7 +26,7 @@ const AboutSection = () => {
             <img src={mainImage} alt="Gestão condominial profissional" className="rounded-lg w-full object-cover max-h-[500px]" />
             <div className="absolute bottom-6 left-6 bg-primary text-primary-foreground p-4 rounded-lg">
               <p className="text-3xl font-bold">{stat4Num}</p>
-              <p className="text-sm"> experiência</p>
+              <p className="text-sm">{stat4Label}</p>
             </div>
           </div>
 

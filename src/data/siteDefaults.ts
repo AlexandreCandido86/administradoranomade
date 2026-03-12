@@ -23,8 +23,8 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     stat_2_label: "Unidades Habitacionais",
     stat_3_number: "15.000+",
     stat_3_label: "Moradores",
-    stat_4_number: "10+",
-    stat_4_label: "Anos de Experiência",
+    stat_4_number: "Muito+",
+    stat_4_label: "experiência",
   },
   about_page: {
     intro: "Conheça nossa história e descubra por que somos a escolha certa para o seu condomínio.",
