@@ -262,30 +262,47 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-card border-b border-border px-6 py-4 flex items-center justify-between">
+      <header className="bg-card border-b border-border px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
+          <button className="md:hidden text-foreground mr-1" onClick={() => setSidebarOpen(!sidebarOpen)}>
+            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
           <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-primary-foreground text-sm">N</div>
           <div>
-            <h1 className="text-lg font-bold text-foreground">Painel Admin</h1>
-            <p className="text-xs text-muted-foreground">{user.email}</p>
+            <h1 className="text-base md:text-lg font-bold text-foreground">Painel Admin</h1>
+            <p className="text-xs text-muted-foreground hidden sm:block">{user.email}</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <a href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">Ver site</a>
+        <div className="flex items-center gap-2 md:gap-3">
+          <a href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors hidden sm:inline">Ver site</a>
           <Button variant="outline" size="sm" onClick={signOut} className="gap-2">
-            <LogOut className="w-4 h-4" /> Sair
+            <LogOut className="w-4 h-4" /> <span className="hidden sm:inline">Sair</span>
           </Button>
         </div>
       </header>
 
-      <div className="flex">
-        <aside className="w-64 min-h-[calc(100vh-73px)] bg-card border-r border-border p-4 overflow-y-auto">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-semibold">Seções do Site</p>
+      <div className="flex relative">
+        {/* Mobile overlay */}
+        {sidebarOpen && (
+          <div className="fixed inset-0 bg-black/50 z-30 md:hidden" onClick={() => setSidebarOpen(false)} />
+        )}
+
+        <aside className={`
+          fixed md:static z-40 top-0 left-0 h-full md:h-auto
+          w-64 min-h-[calc(100vh-73px)] bg-card border-r border-border p-4 overflow-y-auto
+          transform transition-transform duration-200 ease-in-out
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0
+        `}>
+          <div className="flex items-center justify-between md:hidden mb-3">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Seções</p>
+            <button onClick={() => setSidebarOpen(false)} className="text-foreground"><X className="w-4 h-4" /></button>
+          </div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-semibold hidden md:block">Seções do Site</p>
           <nav className="space-y-1">
             {sections.map((s) => (
               <button
                 key={s.id}
-                onClick={() => { setActiveSection(s.id); setInitialized(false); }}
+                onClick={() => { setActiveSection(s.id); setInitialized(false); setSidebarOpen(false); }}
                 className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                   activeSection === s.id
                     ? "bg-primary/10 text-primary font-medium"
@@ -298,7 +315,7 @@ const AdminDashboard = () => {
           </nav>
         </aside>
 
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 md:p-8">
           <div className="max-w-3xl">
             {isBlogSection ? (
               <BlogManager />
