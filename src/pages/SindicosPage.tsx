@@ -41,7 +41,7 @@ const SindicosPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             <div className="relative">
-              <img src={mainImage} alt="Síndico Profissional" className="rounded-lg w-full max-h-[450px] object-cover" />
+              {mainImage && <img src={mainImage} alt="Síndico Profissional" className="rounded-lg w-full max-h-[450px] object-cover" />}
               <div className="mt-4 bg-card p-4 rounded-lg border border-border">
                 <p className="text-sm text-muted-foreground">{cardSubtitle}</p>
                 <p className="text-lg font-bold text-foreground">{cardText}</p>

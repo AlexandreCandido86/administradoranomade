@@ -67,6 +67,9 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
+          <Link to="/admin/login" className="block py-3 text-sm font-medium text-muted-foreground hover:text-foreground border-b border-border" onClick={() => setMobileOpen(false)}>
+            Área Admin
+          </Link>
           <Button asChild className="mt-4 w-full bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="w-4 h-4" />
