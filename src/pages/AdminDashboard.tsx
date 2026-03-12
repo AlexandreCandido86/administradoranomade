@@ -214,17 +214,20 @@ const AdminDashboard = () => {
 
   const handleSave = async () => {
     try {
-      const promises = currentSection.fields.map((field) =>
-        upsertContent.mutateAsync({
+      const promises = currentSection.fields.map((field) => {
+        const value = getValue(activeSection, field.key) || getDefault(activeSection, field.key);
+        console.log(`Saving: ${activeSection}/${field.key} = "${value}"`);
+        return upsertContent.mutateAsync({
           section: activeSection,
           key: field.key,
-          value: getValue(activeSection, field.key) || getDefault(activeSection, field.key),
-        })
-      );
+          value,
+        });
+      });
       await Promise.all(promises);
       toast({ title: "Salvo!", description: "Conteúdo atualizado com sucesso." });
-    } catch {
-      toast({ title: "Erro", description: "Não foi possível salvar.", variant: "destructive" });
+    } catch (err: any) {
+      console.error("Save error:", err);
+      toast({ title: "Erro ao salvar", description: err?.message || "Não foi possível salvar. Verifique se você está logado como admin.", variant: "destructive" });
     }
   };
 
