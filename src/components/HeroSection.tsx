@@ -13,6 +13,9 @@ const HeroSection = () => {
   const ctaSecondary = useContentValue("hero", "cta_secondary", "Fale Conosco");
   const tagline = useContentValue("hero", "tagline", "\"Excelência na gestão, tranquilidade para você.\"");
   const bgImage = useImageValue("hero", "bg", heroBg);
+  const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
+  const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
+  const bgImage = useImageValue("hero", "bg", heroBg);
 
   return (
     <section id="inicio" className="relative min-h-[80vh] flex items-center">
