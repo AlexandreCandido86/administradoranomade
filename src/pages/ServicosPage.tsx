@@ -1,6 +1,7 @@
+import TopBar from "@/components/TopBar";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { DollarSign, FileText, Users, MessageSquare, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { useContentValue } from "@/hooks/useSiteContent";
 
 const defaultServices = [
@@ -11,49 +12,53 @@ const defaultServices = [
   { icon: Calendar, titleKey: "service_5_title", descKey: "service_5_desc", defaultTitle: "Apoio em Assembleias", defaultDesc: "Organização e suporte para garantir reuniões mais produtivas e bem conduzidas." },
 ];
 
-const ServicesSection = () => {
+const ServicosPage = () => {
   const label = useContentValue("services", "label", "〰〰 Nossos Serviços 〰〰");
   const title = useContentValue("services", "title", "Leve a mudança para o seu condomínio");
-  const ctaTitle = useContentValue("services", "cta_title", "Precisa de uma solução personalizada?");
-  const ctaDesc = useContentValue("services", "cta_desc", "Entre em contato e descubra como podemos ajudar o seu condomínio.");
+  const pageIntro = useContentValue("services_page", "intro", "Conheça todos os nossos serviços de gestão condominial e descubra como podemos transformar o seu condomínio.");
 
   return (
-    <section id="servicos" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <p className="section-label mb-2">{label}</p>
-          <h2 className="section-title">{title}</h2>
-        </div>
+    <div className="min-h-screen bg-background">
+      <TopBar />
+      <Navbar />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {defaultServices.map((s) => (
-            <ServiceCard key={s.titleKey} {...s} />
-          ))}
-          <div className="bg-primary rounded-lg p-6 flex flex-col justify-center">
-            <h3 className="text-lg font-semibold text-primary-foreground mb-2">{ctaTitle}</h3>
-            <p className="text-sm text-primary-foreground/80 mb-4">{ctaDesc}</p>
-            <Button asChild className="bg-white text-background hover:bg-white/90 w-fit">
-              <Link to="/servicos">VER SERVIÇOS</Link>
-            </Button>
+      <section className="py-16 bg-dark-surface">
+        <div className="container mx-auto px-4 text-center">
+          <p className="section-label mb-2">{label}</p>
+          <h1 className="section-title text-4xl md:text-5xl mb-4">{title}</h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">{pageIntro}</p>
+        </div>
+      </section>
+
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {defaultServices.map((s) => (
+              <ServiceDetailCard key={s.titleKey} {...s} />
+            ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <Footer />
+    </div>
   );
 };
 
-function ServiceCard({ icon: Icon, titleKey, descKey, defaultTitle, defaultDesc }: any) {
+function ServiceDetailCard({ icon: Icon, titleKey, descKey, defaultTitle, defaultDesc }: any) {
   const t = useContentValue("services", titleKey, defaultTitle);
   const d = useContentValue("services", descKey, defaultDesc);
+  const detail = useContentValue("services_page", `${titleKey}_detail`, "");
   return (
-    <div className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors group">
-      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-        <Icon className="w-6 h-6 text-primary" />
+    <div className="bg-card border border-border rounded-lg p-8 hover:border-primary/50 transition-colors group">
+      <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+        <Icon className="w-7 h-7 text-primary" />
       </div>
-      <h3 className="text-lg font-semibold text-foreground mb-2">{t}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{d}</p>
+      <h3 className="text-xl font-semibold text-foreground mb-3">{t}</h3>
+      <p className="text-muted-foreground leading-relaxed">{d}</p>
+      {detail && <p className="text-muted-foreground leading-relaxed mt-3">{detail}</p>}
     </div>
   );
 }
 
-export default ServicesSection;
+export default ServicosPage;

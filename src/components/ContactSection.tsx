@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { useContentValue } from "@/hooks/useSiteContent";
 
 const ContactSection = () => {
@@ -27,8 +28,8 @@ const ContactSection = () => {
             <span className="text-muted-foreground">São Paulo, SP</span>
           </div>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 gap-2">
-          <MessageCircle className="w-4 h-4" /> FALE CONOSCO
+        <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 gap-2">
+          <Link to="/contato"><MessageCircle className="w-4 h-4" /> FALE CONOSCO</Link>
         </Button>
       </div>
     </section>

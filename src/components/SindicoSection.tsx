@@ -1,5 +1,6 @@
 import { Database, BarChart3, Headphones, Shield, Zap, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import sindicoImg from "@/assets/sindico-img.jpg";
 import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
 
@@ -44,7 +45,9 @@ const SindicoSection = () => {
                 </div>
               ))}
             </div>
-            <Button className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8">SAIBA MAIS</Button>
+            <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8">
+              <Link to="/sindicos">SAIBA MAIS</Link>
+            </Button>
           </div>
         </div>
       </div>
