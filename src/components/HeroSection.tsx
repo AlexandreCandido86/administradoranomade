@@ -15,7 +15,6 @@ const HeroSection = () => {
   const bgImage = useImageValue("hero", "bg", heroBg);
   const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
-  const bgImage = useImageValue("hero", "bg", heroBg);
 
   return (
     <section id="inicio" className="relative min-h-[80vh] flex items-center">
