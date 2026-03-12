@@ -1,5 +1,6 @@
 import { DollarSign, FileText, Users, MessageSquare, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { useContentValue } from "@/hooks/useSiteContent";
 
 const defaultServices = [
@@ -32,7 +33,7 @@ const ServicesSection = () => {
             <h3 className="text-lg font-semibold text-primary-foreground mb-2">{ctaTitle}</h3>
             <p className="text-sm text-primary-foreground/80 mb-4">{ctaDesc}</p>
             <Button asChild className="bg-white text-background hover:bg-white/90 w-fit">
-              <a href="#sindicos">VER SERVIÇOS</a>
+              <Link to="/servicos">VER SERVIÇOS</Link>
             </Button>
           </div>
         </div>

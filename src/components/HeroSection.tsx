@@ -1,5 +1,6 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
 
@@ -29,11 +30,11 @@ const HeroSection = () => {
           {subtitle}
         </p>
         <div className="flex flex-wrap gap-4 mb-16">
-          <Button className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 py-6 text-base gap-2">
-            {ctaPrimary} <ArrowRight className="w-4 h-4" />
+          <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 py-6 text-base gap-2">
+            <Link to="/quem-somos">{ctaPrimary} <ArrowRight className="w-4 h-4" /></Link>
           </Button>
-          <Button variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/10 px-8 py-6 text-base gap-2">
-            <MessageCircle className="w-4 h-4" /> {ctaSecondary}
+          <Button asChild variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/10 px-8 py-6 text-base gap-2">
+            <Link to="/contato"><MessageCircle className="w-4 h-4" /> {ctaSecondary}</Link>
           </Button>
         </div>
       </div>
