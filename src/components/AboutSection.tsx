@@ -35,7 +35,7 @@ const AboutSection = () => {
             <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
             <ul className="space-y-4 mb-8">
               {features.map((f) =>
-              <li key={f} className="flex items-center gap-3 text-foreground">
+              <li key={f} className="flex items-center gap-3 text-black">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   {f}
                 </li>
