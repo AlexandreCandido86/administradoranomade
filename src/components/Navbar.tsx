@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import { useContentValue } from "@/hooks/useSiteContent";
 
 const navItems = [
   { label: "Início", href: "/" },
