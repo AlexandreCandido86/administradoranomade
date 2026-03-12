@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useSiteContent, useUpsertContent, useSiteImages, useUpsertImage } from "@/hooks/useSiteContent";
-import { LogOut, Save, Image, FileText, Loader2 } from "lucide-react";
+import { LogOut, Save, Image, FileText, Loader2, Palette } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { siteDefaults } from "@/data/siteDefaults";
 
 const sections = [
   { id: "hero", label: "Hero (Banner Principal)", fields: [
@@ -108,7 +109,7 @@ const sections = [
     { key: "phone", label: "Telefone", type: "text" },
     { key: "email", label: "E-mail", type: "text" },
     { key: "address", label: "Endereço", type: "text" },
-    { key: "whatsapp", label: "WhatsApp", type: "text" },
+    { key: "whatsapp", label: "WhatsApp (número com DDD)", type: "text" },
   ], images: [] },
   { id: "contato_page", label: "Página Contato", fields: [
     { key: "intro", label: "Introdução da página", type: "textarea" },
@@ -120,7 +121,50 @@ const sections = [
     { key: "email", label: "E-mail", type: "text" },
     { key: "address", label: "Endereço", type: "text" },
   ], images: [] },
+  { id: "colors", label: "🎨 Cores do Site", fields: [
+    { key: "primary", label: "Cor Principal (dourado/destaque)", type: "color" },
+    { key: "background", label: "Fundo do site", type: "color" },
+    { key: "card", label: "Fundo dos cards", type: "color" },
+    { key: "foreground", label: "Cor do texto principal", type: "color" },
+    { key: "muted_foreground", label: "Cor do texto secundário", type: "color" },
+    { key: "accent", label: "Cor de acento", type: "color" },
+    { key: "border", label: "Cor das bordas", type: "color" },
+  ], images: [] },
 ];
+
+// Convert HSL string "H S% L%" to hex
+function hslToHex(hsl: string): string {
+  const parts = hsl.trim().split(/\s+/);
+  if (parts.length < 3) return "#c8a000";
+  const h = parseFloat(parts[0]);
+  const s = parseFloat(parts[1]) / 100;
+  const l = parseFloat(parts[2]) / 100;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12;
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color).toString(16).padStart(2, "0");
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+// Convert hex to HSL string "H S% L%"
+function hexToHsl(hex: string): string {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h = 0, s = 0;
+  const l = (max + min) / 2;
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+    else if (max === g) h = ((b - r) / d + 2) * 60;
+    else h = ((r - g) / d + 4) * 60;
+  }
+  return `${Math.round(h)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`;
+}
 
 const AdminDashboard = () => {
   const { user, isAdmin, loading: authLoading, signOut } = useAuth();
@@ -156,6 +200,10 @@ const AdminDashboard = () => {
 
   const currentSection = sections.find((s) => s.id === activeSection)!;
 
+  const getDefault = (sectionId: string, key: string) => {
+    return siteDefaults[sectionId]?.[key] ?? "";
+  };
+
   const getValue = (sectionId: string, key: string) => {
     return formValues[`${sectionId}__${key}`] ?? "";
   };
@@ -170,7 +218,7 @@ const AdminDashboard = () => {
         upsertContent.mutateAsync({
           section: activeSection,
           key: field.key,
-          value: getValue(activeSection, field.key),
+          value: getValue(activeSection, field.key) || getDefault(activeSection, field.key),
         })
       );
       await Promise.all(promises);
@@ -193,6 +241,8 @@ const AdminDashboard = () => {
     const item = imagesData?.find((d: any) => d.section === sectionId && d.key === key);
     return item?.image_url ?? "";
   };
+
+  const isColorSection = activeSection === "colors";
 
   return (
     <div className="min-h-screen bg-background">
@@ -236,38 +286,86 @@ const AdminDashboard = () => {
           <div className="max-w-3xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                <FileText className="w-6 h-6 text-primary" />
+                {isColorSection ? <Palette className="w-6 h-6 text-primary" /> : <FileText className="w-6 h-6 text-primary" />}
                 {currentSection.label}
               </h2>
               <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-gold-dark gap-2" disabled={upsertContent.isPending}>
                 {upsertContent.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-                Salvar Textos
+                {isColorSection ? "Salvar Cores" : "Salvar Textos"}
               </Button>
             </div>
+
+            {isColorSection && (
+              <div className="bg-muted/30 border border-border rounded-lg p-4 mb-6">
+                <p className="text-sm text-muted-foreground">
+                  Altere as cores do site usando os seletores abaixo. As mudanças serão aplicadas após salvar e recarregar a página.
+                </p>
+              </div>
+            )}
 
             {contentLoading ? (
               <div className="flex items-center justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
             ) : (
               <div className="space-y-6">
-                {currentSection.fields.map((field) => (
-                  <div key={field.key} className="space-y-2">
-                    <Label className="text-foreground">{field.label}</Label>
-                    {field.type === "textarea" ? (
-                      <Textarea
-                        value={getValue(activeSection, field.key)}
-                        onChange={(e) => setValue(activeSection, field.key, e.target.value)}
-                        rows={3}
-                        className="bg-muted/50"
-                      />
-                    ) : (
-                      <Input
-                        value={getValue(activeSection, field.key)}
-                        onChange={(e) => setValue(activeSection, field.key, e.target.value)}
-                        className="bg-muted/50"
-                      />
-                    )}
-                  </div>
-                ))}
+                {currentSection.fields.map((field) => {
+                  const defaultVal = getDefault(activeSection, field.key);
+                  const currentVal = getValue(activeSection, field.key);
+
+                  if (field.type === "color") {
+                    const hslVal = currentVal || defaultVal;
+                    const hexVal = hslToHex(hslVal);
+                    return (
+                      <div key={field.key} className="space-y-2">
+                        <Label className="text-foreground">{field.label}</Label>
+                        <div className="flex items-center gap-4">
+                          <input
+                            type="color"
+                            value={hexVal}
+                            onChange={(e) => setValue(activeSection, field.key, hexToHsl(e.target.value))}
+                            className="w-16 h-10 rounded cursor-pointer border border-border"
+                          />
+                          <Input
+                            value={currentVal || defaultVal}
+                            onChange={(e) => setValue(activeSection, field.key, e.target.value)}
+                            className="bg-muted/50 font-mono text-sm"
+                            placeholder={defaultVal}
+                          />
+                          <div
+                            className="w-10 h-10 rounded border border-border flex-shrink-0"
+                            style={{ backgroundColor: `hsl(${currentVal || defaultVal})` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div key={field.key} className="space-y-2">
+                      <Label className="text-foreground">{field.label}</Label>
+                      {field.type === "textarea" ? (
+                        <Textarea
+                          value={currentVal}
+                          onChange={(e) => setValue(activeSection, field.key, e.target.value)}
+                          rows={3}
+                          className="bg-muted/50"
+                          placeholder={defaultVal}
+                        />
+                      ) : (
+                        <Input
+                          value={currentVal}
+                          onChange={(e) => setValue(activeSection, field.key, e.target.value)}
+                          className="bg-muted/50"
+                          placeholder={defaultVal}
+                        />
+                      )}
+                      {defaultVal && !currentVal && (
+                        <p className="text-xs text-muted-foreground italic">
+                          Texto atual no site: "{defaultVal.length > 80 ? defaultVal.slice(0, 80) + "..." : defaultVal}"
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
 
                 {currentSection.images.length > 0 && (
                   <div className="border-t border-border pt-6 mt-6">
