@@ -32,7 +32,7 @@ const AboutSection = () => {
           <div>
             <p className="section-label mb-2">{label}</p>
             <h2 className="section-title mb-6 text-black">{title}</h2>
-            <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
+            <p className="text-black leading-relaxed mb-8">{description}</p>
             <ul className="space-y-4 mb-8">
               {features.map((f) =>
               <li key={f} className="flex items-center gap-3 text-black">
