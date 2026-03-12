@@ -18,7 +18,7 @@ const AboutSection = () => {
   const features = [feature1, feature2, feature3, feature4];
 
   return (
-    <section id="quem-somos" className="py-20 bg-dark-surface bg-[#f7f7f7]">
+    <section id="quem-somos" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
