@@ -38,7 +38,7 @@ const HeroSection = () => {
             <Link to="/quem-somos">{ctaPrimary} <ArrowRight className="w-4 h-4" /></Link>
           </Button>
           <Button asChild variant="outline" className="border-foreground/30 text-foreground hover:bg-foreground/10 px-8 py-6 text-base gap-2">
-            <Link to="/contato"><MessageCircle className="w-4 h-4" /> {ctaSecondary}</Link>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4" /> {ctaSecondary}</a>
           </Button>
         </div>
         <p className="text-sm md:text-base text-muted-foreground italic tracking-wide mb-16">
