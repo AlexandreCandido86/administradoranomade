@@ -21,7 +21,8 @@ export function useSiteContent(section?: string) {
 }
 
 export function useContentValue(section: string, key: string, fallback: string) {
-  const { data } = useSiteContent(section);
+  const { data, isLoading } = useSiteContent(section);
+  if (isLoading) return fallback;
   const item = data?.find((d) => d.key === key);
   return item?.value ?? fallback;
 }
