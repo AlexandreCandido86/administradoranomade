@@ -18,7 +18,7 @@ const sections = [
     { key: "cta_primary", label: "Botão principal", type: "text" },
     { key: "cta_secondary", label: "Botão secundário", type: "text" },
   ], images: [{ key: "bg", label: "Imagem de fundo" }] },
-  { id: "about", label: "Quem Somos", fields: [
+  { id: "about", label: "Quem Somos (Home)", fields: [
     { key: "label", label: "Label", type: "text" },
     { key: "title", label: "Título", type: "text" },
     { key: "description", label: "Descrição", type: "textarea" },
@@ -35,7 +35,13 @@ const sections = [
     { key: "stat_4_number", label: "Estatística 4 - Número", type: "text" },
     { key: "stat_4_label", label: "Estatística 4 - Label", type: "text" },
   ], images: [{ key: "main", label: "Imagem principal" }] },
-  { id: "services", label: "Serviços", fields: [
+  { id: "about_page", label: "Página Quem Somos", fields: [
+    { key: "intro", label: "Introdução da página", type: "textarea" },
+    { key: "mission", label: "Missão", type: "textarea" },
+    { key: "vision", label: "Visão", type: "textarea" },
+    { key: "values", label: "Valores", type: "textarea" },
+  ], images: [] },
+  { id: "services", label: "Serviços (Home)", fields: [
     { key: "label", label: "Label", type: "text" },
     { key: "title", label: "Título", type: "text" },
     { key: "service_1_title", label: "Serviço 1 - Título", type: "text" },
@@ -51,13 +57,25 @@ const sections = [
     { key: "cta_title", label: "CTA - Título", type: "text" },
     { key: "cta_desc", label: "CTA - Descrição", type: "textarea" },
   ], images: [] },
-  { id: "sindico", label: "Síndicos", fields: [
+  { id: "services_page", label: "Página Serviços", fields: [
+    { key: "intro", label: "Introdução da página", type: "textarea" },
+    { key: "service_1_title_detail", label: "Serviço 1 - Detalhe extra", type: "textarea" },
+    { key: "service_2_title_detail", label: "Serviço 2 - Detalhe extra", type: "textarea" },
+    { key: "service_3_title_detail", label: "Serviço 3 - Detalhe extra", type: "textarea" },
+    { key: "service_4_title_detail", label: "Serviço 4 - Detalhe extra", type: "textarea" },
+    { key: "service_5_title_detail", label: "Serviço 5 - Detalhe extra", type: "textarea" },
+  ], images: [] },
+  { id: "sindico", label: "Síndicos (Home)", fields: [
     { key: "label", label: "Label", type: "text" },
     { key: "title", label: "Título", type: "text" },
     { key: "description", label: "Descrição", type: "textarea" },
     { key: "card_subtitle", label: "Subtítulo do card", type: "text" },
     { key: "card_text", label: "Texto do card", type: "text" },
   ], images: [{ key: "main", label: "Imagem do síndico" }] },
+  { id: "sindicos_page", label: "Página Síndicos", fields: [
+    { key: "intro", label: "Introdução da página", type: "textarea" },
+    { key: "detail", label: "Texto detalhado", type: "textarea" },
+  ], images: [] },
   { id: "testimonials", label: "Depoimentos", fields: [
     { key: "label", label: "Label", type: "text" },
     { key: "title", label: "Título", type: "text" },
@@ -71,13 +89,30 @@ const sections = [
     { key: "testimonial_3_name", label: "Depoimento 3 - Nome", type: "text" },
     { key: "testimonial_3_role", label: "Depoimento 3 - Cargo", type: "text" },
   ], images: [] },
-  { id: "contact", label: "Contato", fields: [
+  { id: "blog_page", label: "Página Blog", fields: [
+    { key: "title", label: "Título", type: "text" },
+    { key: "intro", label: "Introdução", type: "textarea" },
+    { key: "post_1_title", label: "Post 1 - Título", type: "text" },
+    { key: "post_1_desc", label: "Post 1 - Descrição", type: "textarea" },
+    { key: "post_1_date", label: "Post 1 - Data", type: "text" },
+    { key: "post_2_title", label: "Post 2 - Título", type: "text" },
+    { key: "post_2_desc", label: "Post 2 - Descrição", type: "textarea" },
+    { key: "post_2_date", label: "Post 2 - Data", type: "text" },
+    { key: "post_3_title", label: "Post 3 - Título", type: "text" },
+    { key: "post_3_desc", label: "Post 3 - Descrição", type: "textarea" },
+    { key: "post_3_date", label: "Post 3 - Data", type: "text" },
+  ], images: [] },
+  { id: "contact", label: "Contato (Home)", fields: [
     { key: "label", label: "Label", type: "text" },
     { key: "title", label: "Título", type: "text" },
     { key: "phone", label: "Telefone", type: "text" },
     { key: "email", label: "E-mail", type: "text" },
     { key: "address", label: "Endereço", type: "text" },
     { key: "whatsapp", label: "WhatsApp", type: "text" },
+  ], images: [] },
+  { id: "contato_page", label: "Página Contato", fields: [
+    { key: "intro", label: "Introdução da página", type: "textarea" },
+    { key: "hours", label: "Horário de atendimento", type: "text" },
   ], images: [] },
   { id: "footer", label: "Rodapé", fields: [
     { key: "description", label: "Descrição", type: "textarea" },
@@ -98,7 +133,6 @@ const AdminDashboard = () => {
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [initialized, setInitialized] = useState(false);
 
-  // Initialize form values from DB
   if (contentData && !initialized) {
     const vals: Record<string, string> = {};
     contentData.forEach((item) => {
@@ -162,7 +196,6 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="bg-card border-b border-border px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-primary-foreground text-sm">N</div>
@@ -180,8 +213,7 @@ const AdminDashboard = () => {
       </header>
 
       <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-64 min-h-[calc(100vh-73px)] bg-card border-r border-border p-4">
+        <aside className="w-64 min-h-[calc(100vh-73px)] bg-card border-r border-border p-4 overflow-y-auto">
           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-semibold">Seções do Site</p>
           <nav className="space-y-1">
             {sections.map((s) => (
@@ -200,7 +232,6 @@ const AdminDashboard = () => {
           </nav>
         </aside>
 
-        {/* Main Content */}
         <main className="flex-1 p-8">
           <div className="max-w-3xl">
             <div className="flex items-center justify-between mb-6">
@@ -218,7 +249,6 @@ const AdminDashboard = () => {
               <div className="flex items-center justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
             ) : (
               <div className="space-y-6">
-                {/* Text Fields */}
                 {currentSection.fields.map((field) => (
                   <div key={field.key} className="space-y-2">
                     <Label className="text-foreground">{field.label}</Label>
@@ -239,7 +269,6 @@ const AdminDashboard = () => {
                   </div>
                 ))}
 
-                {/* Image Fields */}
                 {currentSection.images.length > 0 && (
                   <div className="border-t border-border pt-6 mt-6">
                     <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
