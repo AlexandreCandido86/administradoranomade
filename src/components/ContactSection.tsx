@@ -8,25 +8,31 @@ const ContactSection = () => {
   const phone = useContentValue("contact", "phone", "(11) 99999-9999");
   const email = useContentValue("contact", "email", "contato@nomade.com.br");
 
-  return;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  return (
+    <section id="contato" className="py-20 bg-dark-surface">
+      <div className="container mx-auto px-4 text-center">
+        <p className="section-label mb-2">〰〰 {label}</p>
+        <h2 className="section-title mb-6">{title}</h2>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+          <div className="flex items-center gap-3">
+            <Phone className="w-5 h-5 text-primary" />
+            <span className="text-muted-foreground">{phone}</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <Mail className="w-5 h-5 text-primary" />
+            <span className="text-muted-foreground">{email}</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <MapPin className="w-5 h-5 text-primary" />
+            <span className="text-muted-foreground">São Paulo, SP</span>
+          </div>
+        </div>
+        <Button className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 gap-2">
+          <MessageCircle className="w-4 h-4" /> FALE CONOSCO
+        </Button>
+      </div>
+    </section>
+  );
 };
 
 export default ContactSection;

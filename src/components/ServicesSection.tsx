@@ -28,11 +28,11 @@ const ServicesSection = () => {
           {defaultServices.map((s) => (
             <ServiceCard key={s.titleKey} {...s} />
           ))}
-          <div className="bg-primary rounded-lg p-6 flex flex-col justify-center">
-            <h3 className="text-lg font-semibold text-primary-foreground mb-2">{ctaTitle}</h3>
-            <p className="text-sm text-primary-foreground/80 mb-4">{ctaDesc}</p>
-            <Button variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 w-fit">
-              VER SERVIÇOS
+          <div className="bg-white rounded-lg p-6 flex flex-col justify-center">
+            <h3 className="text-lg font-semibold text-background mb-2">{ctaTitle}</h3>
+            <p className="text-sm text-background/70 mb-4">{ctaDesc}</p>
+            <Button asChild variant="outline" className="border-background/30 text-background hover:bg-background/10 w-fit">
+              <a href="#sindicos">VER SERVIÇOS</a>
             </Button>
           </div>
         </div>
