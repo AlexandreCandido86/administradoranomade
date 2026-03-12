@@ -11,6 +11,7 @@ const HeroSection = () => {
   const subtitle = useContentValue("hero", "subtitle", "Gestão profissional, transparente e humanizada.\nCuidamos do seu condomínio como se fosse nosso.");
   const ctaPrimary = useContentValue("hero", "cta_primary", "SAIBA MAIS");
   const ctaSecondary = useContentValue("hero", "cta_secondary", "Fale Conosco");
+  const tagline = useContentValue("hero", "tagline", "\"Excelência na gestão, tranquilidade para você.\"");
   const bgImage = useImageValue("hero", "bg", heroBg);
 
   return (
