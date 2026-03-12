@@ -16,6 +16,8 @@ const navItems = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
+  const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
