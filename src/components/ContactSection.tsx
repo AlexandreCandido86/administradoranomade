@@ -12,25 +12,25 @@ const ContactSection = () => {
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
 
   return (
-    <section id="contato" className="py-20 bg-white">
+    <section id="contato" className="py-20 bg-primary">
       <div className="container mx-auto px-4 text-center">
-        <p className="text-primary text-sm font-semibold tracking-[0.25em] uppercase mb-2">〰〰 {label}</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">{title}</h2>
+        <p className="text-primary-foreground/80 text-sm font-semibold tracking-[0.25em] uppercase mb-2">〰〰 {label}</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">{title}</h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
           <div className="flex items-center gap-3">
-            <Phone className="w-5 h-5 text-primary" />
-            <span className="text-black">{phone}</span>
+            <Phone className="w-5 h-5 text-primary-foreground" />
+            <span className="text-primary-foreground">{phone}</span>
           </div>
           <div className="flex items-center gap-3">
-            <Mail className="w-5 h-5 text-primary" />
-            <span className="text-black">{email}</span>
+            <Mail className="w-5 h-5 text-primary-foreground" />
+            <span className="text-primary-foreground">{email}</span>
           </div>
           <div className="flex items-center gap-3">
-            <MapPin className="w-5 h-5 text-primary" />
-            <span className="text-black">São Paulo, SP</span>
+            <MapPin className="w-5 h-5 text-primary-foreground" />
+            <span className="text-primary-foreground">São Paulo, SP</span>
           </div>
         </div>
-        <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 gap-2">
+        <Button asChild className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold px-8 gap-2">
           <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4" /> FALE PELO WHATSAPP</a>
         </Button>
       </div>
