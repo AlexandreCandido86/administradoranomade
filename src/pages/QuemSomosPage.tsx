@@ -78,20 +78,20 @@ const QuemSomosPage = () => {
       </section>
 
       {/* Mission, Vision, Values */}
-      <section className="py-20 bg-dark-surface">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-card border border-border rounded-lg p-8">
+            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
               <h3 className="text-lg font-semibold text-primary mb-3">Missão</h3>
-              <p className="text-muted-foreground leading-relaxed">{mission}</p>
+              <p className="text-black leading-relaxed">{mission}</p>
             </div>
-            <div className="bg-card border border-border rounded-lg p-8">
+            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
               <h3 className="text-lg font-semibold text-primary mb-3">Visão</h3>
-              <p className="text-muted-foreground leading-relaxed">{vision}</p>
+              <p className="text-black leading-relaxed">{vision}</p>
             </div>
-            <div className="bg-card border border-border rounded-lg p-8">
+            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
               <h3 className="text-lg font-semibold text-primary mb-3">Valores</h3>
-              <p className="text-muted-foreground leading-relaxed">{values}</p>
+              <p className="text-black leading-relaxed">{values}</p>
             </div>
           </div>
         </div>
