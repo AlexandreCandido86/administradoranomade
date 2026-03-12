@@ -29,7 +29,7 @@ const HeroSection = () => {
         <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed whitespace-pre-line">
           {subtitle}
         </p>
-        <div className="flex flex-wrap gap-4 mb-16">
+        <div className="flex flex-wrap gap-4 mb-6">
           <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 py-6 text-base gap-2">
             <Link to="/quem-somos">{ctaPrimary} <ArrowRight className="w-4 h-4" /></Link>
           </Button>
@@ -37,6 +37,9 @@ const HeroSection = () => {
             <Link to="/contato"><MessageCircle className="w-4 h-4" /> {ctaSecondary}</Link>
           </Button>
         </div>
+        <p className="text-sm md:text-base text-muted-foreground italic tracking-wide mb-16">
+          {tagline}
+        </p>
       </div>
     </section>
   );
