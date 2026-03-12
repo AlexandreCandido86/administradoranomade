@@ -46,8 +46,8 @@ const ServicosPage = () => {
 };
 
 function ServiceDetailCard({ icon: Icon, titleKey, descKey, defaultTitle, defaultDesc }: any) {
-  const t = useContentValue("services", titleKey, defaultTitle);
-  const d = useContentValue("services", descKey, defaultDesc);
+  const t = useContentValue("services_page", titleKey, defaultTitle);
+  const d = useContentValue("services_page", descKey, defaultDesc);
   const detail = useContentValue("services_page", `${titleKey}_detail`, "");
   return (
     <div className="bg-card border border-border rounded-lg p-8 hover:border-primary/50 transition-colors group">
