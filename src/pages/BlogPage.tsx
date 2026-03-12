@@ -1,26 +1,34 @@
+import { useState } from "react";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useContentValue } from "@/hooks/useSiteContent";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
+
+const POSTS_PER_PAGE = 3;
 
 const BlogPage = () => {
   const pageTitle = useContentValue("blog_page", "title", "Blog");
   const pageIntro = useContentValue("blog_page", "intro", "Fique por dentro das últimas novidades sobre gestão condominial, dicas para síndicos e muito mais.");
-  const post1Title = useContentValue("blog_page", "post_1_title", "Como escolher a melhor administradora de condomínios");
-  const post1Desc = useContentValue("blog_page", "post_1_desc", "Descubra os critérios essenciais para selecionar uma administradora que realmente atenda às necessidades do seu condomínio.");
-  const post1Date = useContentValue("blog_page", "post_1_date", "12 Mar 2026");
-  const post2Title = useContentValue("blog_page", "post_2_title", "5 dicas para uma assembleia de condomínio produtiva");
-  const post2Desc = useContentValue("blog_page", "post_2_desc", "Aprenda como organizar assembleias mais eficientes e obter resultados positivos para todos os condôminos.");
-  const post2Date = useContentValue("blog_page", "post_2_date", "08 Mar 2026");
-  const post3Title = useContentValue("blog_page", "post_3_title", "Gestão financeira condominial: boas práticas");
-  const post3Desc = useContentValue("blog_page", "post_3_desc", "Entenda como manter as finanças do condomínio organizadas e garantir transparência para todos os moradores.");
-  const post3Date = useContentValue("blog_page", "post_3_date", "01 Mar 2026");
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
-  const posts = [
-    { title: post1Title, desc: post1Desc, date: post1Date },
-    { title: post2Title, desc: post2Desc, date: post2Date },
-    { title: post3Title, desc: post3Desc, date: post3Date },
-  ];
+  const { data: posts, isLoading } = useQuery({
+    queryKey: ["blog_posts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .order("published_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const visiblePosts = posts?.slice(0, visibleCount) ?? [];
+  const hasMore = posts ? visibleCount < posts.length : false;
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,20 +45,48 @@ const BlogPage = () => {
 
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-              <article key={post.title} className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
-                <div className="h-48 bg-muted flex items-center justify-center">
-                  <span className="text-muted-foreground text-sm">Imagem do artigo</span>
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : visiblePosts.length === 0 ? (
+            <p className="text-center text-muted-foreground">Nenhum post publicado ainda.</p>
+          ) : (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {visiblePosts.map((post) => (
+                  <article key={post.id} className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
+                    <div className="h-48 bg-muted flex items-center justify-center overflow-hidden">
+                      {post.image_url ? (
+                        <img src={post.image_url} alt={post.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="text-muted-foreground text-sm">Imagem do artigo</span>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <p className="text-xs text-primary font-semibold mb-2">
+                        {new Date(post.published_at).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })}
+                      </p>
+                      <h3 className="text-lg font-semibold text-foreground mb-3">{post.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{post.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {hasMore && (
+                <div className="flex justify-center mt-10">
+                  <Button
+                    variant="outline"
+                    onClick={() => setVisibleCount((c) => c + POSTS_PER_PAGE)}
+                    className="border-primary text-primary hover:bg-primary/10"
+                  >
+                    Ver mais
+                  </Button>
                 </div>
-                <div className="p-6">
-                  <p className="text-xs text-primary font-semibold mb-2">{post.date}</p>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">{post.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{post.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+              )}
+            </>
+          )}
         </div>
       </section>
 
