@@ -82,12 +82,15 @@ const sections = [
   { id: "testimonials", label: "Depoimentos", fields: [
     { key: "label", label: "Label", type: "text" },
     { key: "title", label: "Título", type: "text" },
+    { key: "testimonial_1_visible", label: "Depoimento 1 - Visível", type: "toggle" },
     { key: "testimonial_1_text", label: "Depoimento 1 - Texto", type: "textarea" },
     { key: "testimonial_1_name", label: "Depoimento 1 - Nome", type: "text" },
     { key: "testimonial_1_role", label: "Depoimento 1 - Cargo", type: "text" },
+    { key: "testimonial_2_visible", label: "Depoimento 2 - Visível", type: "toggle" },
     { key: "testimonial_2_text", label: "Depoimento 2 - Texto", type: "textarea" },
     { key: "testimonial_2_name", label: "Depoimento 2 - Nome", type: "text" },
     { key: "testimonial_2_role", label: "Depoimento 2 - Cargo", type: "text" },
+    { key: "testimonial_3_visible", label: "Depoimento 3 - Visível", type: "toggle" },
     { key: "testimonial_3_text", label: "Depoimento 3 - Texto", type: "textarea" },
     { key: "testimonial_3_name", label: "Depoimento 3 - Nome", type: "text" },
     { key: "testimonial_3_role", label: "Depoimento 3 - Cargo", type: "text" },
@@ -341,6 +344,22 @@ const AdminDashboard = () => {
                                 style={{ backgroundColor: `hsl(${currentVal || defaultVal})` }}
                               />
                             </div>
+                          </div>
+                        );
+                      }
+
+                      if (field.type === "toggle") {
+                        const isOn = (currentVal || defaultVal || "true") !== "false";
+                        return (
+                          <div key={field.key} className="flex items-center justify-between py-3 px-4 bg-muted/30 border border-border rounded-lg">
+                            <Label className="text-foreground font-medium">{field.label}</Label>
+                            <button
+                              type="button"
+                              onClick={() => setValue(activeSection, field.key, isOn ? "false" : "true")}
+                              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isOn ? "bg-primary" : "bg-muted"}`}
+                            >
+                              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isOn ? "translate-x-6" : "translate-x-1"}`} />
+                            </button>
                           </div>
                         );
                       }
