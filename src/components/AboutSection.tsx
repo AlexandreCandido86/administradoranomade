@@ -12,7 +12,7 @@ const AboutSection = () => {
   const feature2 = useContentValue("about", "feature_2", "Equipe especializada e humanizada");
   const feature3 = useContentValue("about", "feature_3", "Tecnologia a serviço da sua comunidade");
   const feature4 = useContentValue("about", "feature_4", "Suporte dedicado ao síndico profissional");
-  const stat4Num = useContentValue("about", "stat_4_number", "10+");
+  const stat4Num = useContentValue("about", "stat_4_number", "Muito+");
   const mainImage = useImageValue("about", "main", aboutImg);
 
   const features = [feature1, feature2, feature3, feature4];
