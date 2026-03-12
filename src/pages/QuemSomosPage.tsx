@@ -19,7 +19,7 @@ const QuemSomosPage = () => {
   const stat2Label = useContentValue("about", "stat_2_label", "Unidades Habitacionais");
   const stat3Num = useContentValue("about", "stat_3_number", "15.000+");
   const stat3Label = useContentValue("about", "stat_3_label", "Moradores");
-  const stat4Num = useContentValue("about", "stat_4_number", "10+");
+  const stat4Num = useContentValue("about", "stat_4_number", "Muito+");
   const stat4Label = useContentValue("about", "stat_4_label", "Anos de Experiência");
   const mainImage = useImageValue("about", "main", aboutImg);
 
