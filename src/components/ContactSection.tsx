@@ -30,7 +30,7 @@ const ContactSection = () => {
             <span className="text-primary-foreground">São Paulo, SP</span>
           </div>
         </div>
-        <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8 gap-2">
+        <Button asChild className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold px-8 gap-2">
           <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4" /> FALE PELO WHATSAPP</a>
         </Button>
       </div>
