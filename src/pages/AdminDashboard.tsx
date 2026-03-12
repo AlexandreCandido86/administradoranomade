@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useSiteContent, useUpsertContent, useSiteImages, useUpsertImage } from "@/hooks/useSiteContent";
-import { LogOut, Save, Image, FileText, Loader2, Palette } from "lucide-react";
+import { LogOut, Save, Image, FileText, Loader2, Palette, Plus, Trash2, Edit2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { siteDefaults } from "@/data/siteDefaults";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const sections = [
   { id: "hero", label: "Hero (Banner Principal)", fields: [
@@ -90,18 +92,10 @@ const sections = [
     { key: "testimonial_3_name", label: "Depoimento 3 - Nome", type: "text" },
     { key: "testimonial_3_role", label: "Depoimento 3 - Cargo", type: "text" },
   ], images: [] },
-  { id: "blog_page", label: "Página Blog", fields: [
+  { id: "blog", label: "📝 Blog (Posts)", fields: [], images: [] },
+  { id: "blog_page", label: "Página Blog (Textos)", fields: [
     { key: "title", label: "Título", type: "text" },
     { key: "intro", label: "Introdução", type: "textarea" },
-    { key: "post_1_title", label: "Post 1 - Título", type: "text" },
-    { key: "post_1_desc", label: "Post 1 - Descrição", type: "textarea" },
-    { key: "post_1_date", label: "Post 1 - Data", type: "text" },
-    { key: "post_2_title", label: "Post 2 - Título", type: "text" },
-    { key: "post_2_desc", label: "Post 2 - Descrição", type: "textarea" },
-    { key: "post_2_date", label: "Post 2 - Data", type: "text" },
-    { key: "post_3_title", label: "Post 3 - Título", type: "text" },
-    { key: "post_3_desc", label: "Post 3 - Descrição", type: "textarea" },
-    { key: "post_3_date", label: "Post 3 - Data", type: "text" },
   ], images: [] },
   { id: "contact", label: "Contato (Home)", fields: [
     { key: "label", label: "Label", type: "text" },
@@ -132,7 +126,6 @@ const sections = [
   ], images: [] },
 ];
 
-// Convert HSL string "H S% L%" to hex
 function hslToHex(hsl: string): string {
   const parts = hsl.trim().split(/\s+/);
   if (parts.length < 3) return "#c8a000";
@@ -148,7 +141,6 @@ function hslToHex(hsl: string): string {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
-// Convert hex to HSL string "H S% L%"
 function hexToHsl(hex: string): string {
   const r = parseInt(hex.slice(1, 3), 16) / 255;
   const g = parseInt(hex.slice(3, 5), 16) / 255;
@@ -177,8 +169,17 @@ const AdminDashboard = () => {
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [initialized, setInitialized] = useState(false);
 
+  // Initialize form values: DB values take priority, then defaults
   if (contentData && !initialized) {
     const vals: Record<string, string> = {};
+    // First, populate with defaults
+    for (const section of sections) {
+      for (const field of section.fields) {
+        const defaultVal = siteDefaults[section.id]?.[field.key] ?? "";
+        vals[`${section.id}__${field.key}`] = defaultVal;
+      }
+    }
+    // Then override with DB values
     contentData.forEach((item) => {
       vals[`${item.section}__${item.key}`] = item.value;
     });
@@ -199,6 +200,8 @@ const AdminDashboard = () => {
   );
 
   const currentSection = sections.find((s) => s.id === activeSection)!;
+  const isBlogSection = activeSection === "blog";
+  const isColorSection = activeSection === "colors";
 
   const getDefault = (sectionId: string, key: string) => {
     return siteDefaults[sectionId]?.[key] ?? "";
@@ -216,7 +219,6 @@ const AdminDashboard = () => {
     try {
       const promises = currentSection.fields.map((field) => {
         const value = getValue(activeSection, field.key) || getDefault(activeSection, field.key);
-        console.log(`Saving: ${activeSection}/${field.key} = "${value}"`);
         return upsertContent.mutateAsync({
           section: activeSection,
           key: field.key,
@@ -226,8 +228,7 @@ const AdminDashboard = () => {
       await Promise.all(promises);
       toast({ title: "Salvo!", description: "Conteúdo atualizado com sucesso." });
     } catch (err: any) {
-      console.error("Save error:", err);
-      toast({ title: "Erro ao salvar", description: err?.message || "Não foi possível salvar. Verifique se você está logado como admin.", variant: "destructive" });
+      toast({ title: "Erro ao salvar", description: err?.message || "Não foi possível salvar.", variant: "destructive" });
     }
   };
 
@@ -244,8 +245,6 @@ const AdminDashboard = () => {
     const item = imagesData?.find((d: any) => d.section === sectionId && d.key === key);
     return item?.image_url ?? "";
   };
-
-  const isColorSection = activeSection === "colors";
 
   return (
     <div className="min-h-screen bg-background">
@@ -287,118 +286,119 @@ const AdminDashboard = () => {
 
         <main className="flex-1 p-8">
           <div className="max-w-3xl">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                {isColorSection ? <Palette className="w-6 h-6 text-primary" /> : <FileText className="w-6 h-6 text-primary" />}
-                {currentSection.label}
-              </h2>
-              <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-gold-dark gap-2" disabled={upsertContent.isPending}>
-                {upsertContent.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-                {isColorSection ? "Salvar Cores" : "Salvar Textos"}
-              </Button>
-            </div>
-
-            {isColorSection && (
-              <div className="bg-muted/30 border border-border rounded-lg p-4 mb-6">
-                <p className="text-sm text-muted-foreground">
-                  Altere as cores do site usando os seletores abaixo. As mudanças serão aplicadas após salvar e recarregar a página.
-                </p>
-              </div>
-            )}
-
-            {contentLoading ? (
-              <div className="flex items-center justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+            {isBlogSection ? (
+              <BlogManager />
             ) : (
-              <div className="space-y-6">
-                {currentSection.fields.map((field) => {
-                  const defaultVal = getDefault(activeSection, field.key);
-                  const currentVal = getValue(activeSection, field.key);
+              <>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    {isColorSection ? <Palette className="w-6 h-6 text-primary" /> : <FileText className="w-6 h-6 text-primary" />}
+                    {currentSection.label}
+                  </h2>
+                  <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-gold-dark gap-2" disabled={upsertContent.isPending}>
+                    {upsertContent.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                    {isColorSection ? "Salvar Cores" : "Salvar Textos"}
+                  </Button>
+                </div>
 
-                  if (field.type === "color") {
-                    const hslVal = currentVal || defaultVal;
-                    const hexVal = hslToHex(hslVal);
-                    return (
-                      <div key={field.key} className="space-y-2">
-                        <Label className="text-foreground">{field.label}</Label>
-                        <div className="flex items-center gap-4">
-                          <input
-                            type="color"
-                            value={hexVal}
-                            onChange={(e) => setValue(activeSection, field.key, hexToHsl(e.target.value))}
-                            className="w-16 h-10 rounded cursor-pointer border border-border"
-                          />
-                          <Input
-                            value={currentVal || defaultVal}
-                            onChange={(e) => setValue(activeSection, field.key, e.target.value)}
-                            className="bg-muted/50 font-mono text-sm"
-                            placeholder={defaultVal}
-                          />
-                          <div
-                            className="w-10 h-10 rounded border border-border flex-shrink-0"
-                            style={{ backgroundColor: `hsl(${currentVal || defaultVal})` }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <div key={field.key} className="space-y-2">
-                      <Label className="text-foreground">{field.label}</Label>
-                      {field.type === "textarea" ? (
-                        <Textarea
-                          value={currentVal}
-                          onChange={(e) => setValue(activeSection, field.key, e.target.value)}
-                          rows={3}
-                          className="bg-muted/50"
-                          placeholder={defaultVal}
-                        />
-                      ) : (
-                        <Input
-                          value={currentVal}
-                          onChange={(e) => setValue(activeSection, field.key, e.target.value)}
-                          className="bg-muted/50"
-                          placeholder={defaultVal}
-                        />
-                      )}
-                      {defaultVal && !currentVal && (
-                        <p className="text-xs text-muted-foreground italic">
-                          Texto atual no site: "{defaultVal.length > 80 ? defaultVal.slice(0, 80) + "..." : defaultVal}"
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
-
-                {currentSection.images.length > 0 && (
-                  <div className="border-t border-border pt-6 mt-6">
-                    <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
-                      <Image className="w-5 h-5 text-primary" /> Imagens
-                    </h3>
-                    {currentSection.images.map((img) => (
-                      <div key={img.key} className="space-y-3 mb-6">
-                        <Label className="text-foreground">{img.label}</Label>
-                        {getImageUrl(activeSection, img.key) && (
-                          <img
-                            src={getImageUrl(activeSection, img.key)}
-                            alt={img.label}
-                            className="w-full max-h-48 object-cover rounded-lg border border-border"
-                          />
-                        )}
-                        <Input
-                          type="file"
-                          accept="image/*"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) handleImageUpload(img.key, file);
-                          }}
-                          className="bg-muted/50"
-                        />
-                      </div>
-                    ))}
+                {isColorSection && (
+                  <div className="bg-muted/30 border border-border rounded-lg p-4 mb-6">
+                    <p className="text-sm text-muted-foreground">
+                      Altere as cores do site usando os seletores abaixo. As mudanças serão aplicadas após salvar e recarregar a página.
+                    </p>
                   </div>
                 )}
-              </div>
+
+                {contentLoading ? (
+                  <div className="flex items-center justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+                ) : (
+                  <div className="space-y-6">
+                    {currentSection.fields.map((field) => {
+                      const defaultVal = getDefault(activeSection, field.key);
+                      const currentVal = getValue(activeSection, field.key);
+
+                      if (field.type === "color") {
+                        const hslVal = currentVal || defaultVal;
+                        const hexVal = hslToHex(hslVal);
+                        return (
+                          <div key={field.key} className="space-y-2">
+                            <Label className="text-foreground">{field.label}</Label>
+                            <div className="flex items-center gap-4">
+                              <input
+                                type="color"
+                                value={hexVal}
+                                onChange={(e) => setValue(activeSection, field.key, hexToHsl(e.target.value))}
+                                className="w-16 h-10 rounded cursor-pointer border border-border"
+                              />
+                              <Input
+                                value={currentVal || defaultVal}
+                                onChange={(e) => setValue(activeSection, field.key, e.target.value)}
+                                className="bg-muted/50 font-mono text-sm"
+                                placeholder={defaultVal}
+                              />
+                              <div
+                                className="w-10 h-10 rounded border border-border flex-shrink-0"
+                                style={{ backgroundColor: `hsl(${currentVal || defaultVal})` }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div key={field.key} className="space-y-2">
+                          <Label className="text-foreground">{field.label}</Label>
+                          {field.type === "textarea" ? (
+                            <Textarea
+                              value={currentVal}
+                              onChange={(e) => setValue(activeSection, field.key, e.target.value)}
+                              rows={3}
+                              className="bg-muted/50"
+                              placeholder={defaultVal}
+                            />
+                          ) : (
+                            <Input
+                              value={currentVal}
+                              onChange={(e) => setValue(activeSection, field.key, e.target.value)}
+                              className="bg-muted/50"
+                              placeholder={defaultVal}
+                            />
+                          )}
+                        </div>
+                      );
+                    })}
+
+                    {currentSection.images.length > 0 && (
+                      <div className="border-t border-border pt-6 mt-6">
+                        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
+                          <Image className="w-5 h-5 text-primary" /> Imagens
+                        </h3>
+                        {currentSection.images.map((img) => (
+                          <div key={img.key} className="space-y-3 mb-6">
+                            <Label className="text-foreground">{img.label}</Label>
+                            {getImageUrl(activeSection, img.key) && (
+                              <img
+                                src={getImageUrl(activeSection, img.key)}
+                                alt={img.label}
+                                className="w-full max-h-48 object-cover rounded-lg border border-border"
+                              />
+                            )}
+                            <Input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) handleImageUpload(img.key, file);
+                              }}
+                              className="bg-muted/50"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </main>
@@ -406,5 +406,174 @@ const AdminDashboard = () => {
     </div>
   );
 };
+
+// ─── Blog Manager Component ───
+function BlogManager() {
+  const { toast } = useToast();
+  const qc = useQueryClient();
+  const [editing, setEditing] = useState<any>(null);
+  const [form, setForm] = useState({ title: "", description: "", published_at: "", image_url: "" });
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const { data: posts, isLoading } = useQuery({
+    queryKey: ["blog_posts"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("blog_posts").select("*").order("published_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const saveMutation = useMutation({
+    mutationFn: async () => {
+      let imageUrl = form.image_url;
+
+      if (imageFile) {
+        const filePath = `blog/${Date.now()}-${imageFile.name}`;
+        const { error: upErr } = await supabase.storage.from("site-images").upload(filePath, imageFile, { upsert: true });
+        if (upErr) throw upErr;
+        const { data: urlData } = supabase.storage.from("site-images").getPublicUrl(filePath);
+        imageUrl = urlData.publicUrl;
+      }
+
+      const payload = {
+        title: form.title,
+        description: form.description,
+        image_url: imageUrl,
+        published_at: form.published_at ? new Date(form.published_at).toISOString() : new Date().toISOString(),
+      };
+
+      if (editing) {
+        const { error } = await supabase.from("blog_posts").update(payload).eq("id", editing.id);
+        if (error) throw error;
+      } else {
+        const { error } = await supabase.from("blog_posts").insert(payload);
+        if (error) throw error;
+      }
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["blog_posts"] });
+      toast({ title: editing ? "Post atualizado!" : "Post criado!" });
+      resetForm();
+    },
+    onError: (err: any) => {
+      toast({ title: "Erro", description: err?.message, variant: "destructive" });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("blog_posts").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["blog_posts"] });
+      toast({ title: "Post excluído!" });
+    },
+  });
+
+  const resetForm = () => {
+    setEditing(null);
+    setForm({ title: "", description: "", published_at: "", image_url: "" });
+    setImageFile(null);
+  };
+
+  const startEdit = (post: any) => {
+    setEditing(post);
+    setForm({
+      title: post.title,
+      description: post.description,
+      published_at: post.published_at ? post.published_at.slice(0, 16) : "",
+      image_url: post.image_url || "",
+    });
+    setImageFile(null);
+  };
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold text-foreground flex items-center gap-2 mb-6">
+        <FileText className="w-6 h-6 text-primary" />
+        📝 Gerenciar Posts do Blog
+      </h2>
+
+      {/* Form */}
+      <div className="bg-card border border-border rounded-lg p-6 mb-8 space-y-4">
+        <h3 className="font-semibold text-foreground">{editing ? "Editar Post" : "Novo Post"}</h3>
+        <div className="space-y-2">
+          <Label className="text-foreground">Título</Label>
+          <Input value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="bg-muted/50" />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-foreground">Descrição</Label>
+          <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} rows={4} className="bg-muted/50" />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-foreground">Data de publicação</Label>
+          <Input type="datetime-local" value={form.published_at} onChange={(e) => setForm((f) => ({ ...f, published_at: e.target.value }))} className="bg-muted/50" />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-foreground">Imagem do post</Label>
+          {(form.image_url || imageFile) && (
+            <img
+              src={imageFile ? URL.createObjectURL(imageFile) : form.image_url}
+              alt="Preview"
+              className="w-full max-h-48 object-cover rounded-lg border border-border mb-2"
+            />
+          )}
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) setImageFile(file);
+            }}
+            className="bg-muted/50"
+          />
+        </div>
+        <div className="flex gap-3">
+          <Button onClick={() => saveMutation.mutate()} disabled={!form.title || saveMutation.isPending} className="bg-primary text-primary-foreground hover:bg-gold-dark gap-2">
+            {saveMutation.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+            {editing ? "Salvar Alterações" : "Criar Post"}
+          </Button>
+          {editing && (
+            <Button variant="outline" onClick={resetForm}>Cancelar</Button>
+          )}
+        </div>
+      </div>
+
+      {/* List */}
+      <h3 className="font-semibold text-foreground mb-4">Posts existentes ({posts?.length ?? 0})</h3>
+      {isLoading ? (
+        <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+      ) : posts?.length === 0 ? (
+        <p className="text-muted-foreground text-sm">Nenhum post cadastrado.</p>
+      ) : (
+        <div className="space-y-3">
+          {posts?.map((post) => (
+            <div key={post.id} className="bg-card border border-border rounded-lg p-4 flex items-center gap-4">
+              {post.image_url && (
+                <img src={post.image_url} alt={post.title} className="w-16 h-16 rounded object-cover flex-shrink-0" />
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="font-medium text-foreground truncate">{post.title}</p>
+                <p className="text-xs text-muted-foreground">
+                  {new Date(post.published_at).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })}
+                </p>
+              </div>
+              <div className="flex gap-2 flex-shrink-0">
+                <Button variant="outline" size="sm" onClick={() => startEdit(post)}>
+                  <Edit2 className="w-4 h-4" />
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => deleteMutation.mutate(post.id)} className="text-red-500 hover:text-red-600">
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default AdminDashboard;
