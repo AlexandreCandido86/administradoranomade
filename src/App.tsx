@@ -26,6 +26,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <DynamicColorProvider>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/quem-somos" element={<QuemSomosPage />} />
