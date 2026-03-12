@@ -18,7 +18,7 @@ const AboutSection = () => {
   const features = [feature1, feature2, feature3, feature4];
 
   return (
-    <section id="quem-somos" className="py-20 bg-dark-surface">
+    <section id="quem-somos" className="py-20 bg-dark-surface bg-[#f7f7f7]">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
@@ -31,11 +31,11 @@ const AboutSection = () => {
 
           <div>
             <p className="section-label mb-2">{label}</p>
-            <h2 className="section-title mb-6">{title}</h2>
+            <h2 className="section-title mb-6 text-black">{title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
             <ul className="space-y-4 mb-8">
               {features.map((f) =>
-                <li key={f} className="flex items-center gap-3 text-foreground">
+              <li key={f} className="flex items-center gap-3 text-foreground">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   {f}
                 </li>
@@ -47,8 +47,8 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default AboutSection;
