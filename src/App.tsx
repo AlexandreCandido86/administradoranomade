@@ -24,6 +24,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
+          <DynamicColorProvider>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/quem-somos" element={<QuemSomosPage />} />
