@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/useAuth";
+import ScrollToTop from "@/components/ScrollToTop";
 import { DynamicColorProvider } from "@/components/DynamicColorProvider";
 import Index from "./pages/Index.tsx";
 import QuemSomosPage from "./pages/QuemSomosPage.tsx";
@@ -25,6 +26,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <DynamicColorProvider>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/quem-somos" element={<QuemSomosPage />} />
