@@ -23,11 +23,11 @@ const AboutSection = () => {
 
   const features = [feature1, feature2, feature3, feature4];
   const stats = [
-    { number: stat1Num, label: stat1Label },
-    { number: stat2Num, label: stat2Label },
-    { number: stat3Num, label: stat3Label },
-    { number: stat4Num, label: stat4Label },
-  ];
+  { number: stat1Num, label: stat1Label },
+  { number: stat2Num, label: stat2Label },
+  { number: stat3Num, label: stat3Label },
+  { number: stat4Num, label: stat4Label }];
+
 
   return (
     <section id="quem-somos" className="py-20 bg-dark-surface">
@@ -46,28 +46,28 @@ const AboutSection = () => {
             <h2 className="section-title mb-6">{title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
             <ul className="space-y-4 mb-8">
-              {features.map((f) => (
-                <li key={f} className="flex items-center gap-3 text-foreground">
+              {features.map((f) =>
+              <li key={f} className="flex items-center gap-3 text-foreground">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   {f}
                 </li>
-              ))}
+              )}
             </ul>
             <Button className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8">SAIBA MAIS</Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-border">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <p className="stat-number">{s.number}</p>
-              <p className="stat-label">{s.label}</p>
-            </div>
-          ))}
-        </div>
+        
+
+
+
+
+
+
+        
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default AboutSection;
