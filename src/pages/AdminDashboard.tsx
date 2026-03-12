@@ -348,6 +348,22 @@ const AdminDashboard = () => {
                         );
                       }
 
+                      if (field.type === "toggle") {
+                        const isOn = (currentVal || defaultVal || "true") !== "false";
+                        return (
+                          <div key={field.key} className="flex items-center justify-between py-3 px-4 bg-muted/30 border border-border rounded-lg">
+                            <Label className="text-foreground font-medium">{field.label}</Label>
+                            <button
+                              type="button"
+                              onClick={() => setValue(activeSection, field.key, isOn ? "false" : "true")}
+                              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isOn ? "bg-primary" : "bg-muted"}`}
+                            >
+                              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isOn ? "translate-x-6" : "translate-x-1"}`} />
+                            </button>
+                          </div>
+                        );
+                      }
+
                       return (
                         <div key={field.key} className="space-y-2">
                           <Label className="text-foreground">{field.label}</Label>
