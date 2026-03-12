@@ -21,7 +21,8 @@ export function useSiteContent(section?: string) {
 }
 
 export function useContentValue(section: string, key: string, fallback: string) {
-  const { data } = useSiteContent(section);
+  const { data, isLoading } = useSiteContent(section);
+  if (isLoading) return fallback;
   const item = data?.find((d) => d.key === key);
   return item?.value ?? fallback;
 }
@@ -56,7 +57,8 @@ export function useSiteImages(section?: string) {
 }
 
 export function useImageValue(section: string, key: string, fallback: string) {
-  const { data } = useSiteImages(section);
+  const { data, isLoading } = useSiteImages(section);
+  if (isLoading) return undefined;
   const item = data?.find((d: any) => d.key === key);
   return item?.image_url ?? fallback;
 }
