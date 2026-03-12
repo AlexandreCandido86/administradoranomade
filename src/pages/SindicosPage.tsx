@@ -42,7 +42,7 @@ const SindicosPage = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             <div className="relative">
               <img src={mainImage} alt="Síndico Profissional" className="rounded-lg w-full max-h-[450px] object-cover" />
-              <div className="absolute top-6 right-6 bg-card/90 backdrop-blur-sm p-4 rounded-lg border border-border">
+              <div className="mt-4 bg-card p-4 rounded-lg border border-border">
                 <p className="text-sm text-muted-foreground">{cardSubtitle}</p>
                 <p className="text-lg font-bold text-foreground">{cardText}</p>
               </div>
