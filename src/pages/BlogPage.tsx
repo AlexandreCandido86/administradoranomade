@@ -69,7 +69,12 @@ const BlogPage = () => {
                         {new Date(post.published_at).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })}
                       </p>
                       <h3 className="text-lg font-semibold text-foreground mb-3">{post.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{post.description}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{post.description}</p>
+                      <Link to={`/blog/${post.id}`} className="mt-4 inline-block">
+                        <Button variant="link" className="text-primary p-0 h-auto gap-1 text-sm font-semibold">
+                          Ler mais <ArrowRight className="w-3.5 h-3.5" />
+                        </Button>
+                      </Link>
                     </div>
                   </article>
                 ))}
