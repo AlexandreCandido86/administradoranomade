@@ -6,6 +6,11 @@ const Footer = () => {
   const phone = useContentValue("footer", "phone", "(11) 99999-9999");
   const email = useContentValue("footer", "email", "contato@nomade.com.br");
   const address = useContentValue("footer", "address", "São Paulo, SP");
+  const service1 = useContentValue("footer", "service_1", "Gestão Financeira");
+  const service2 = useContentValue("footer", "service_2", "Gestão Administrativa");
+  const service3 = useContentValue("footer", "service_3", "Assessoria ao Síndico");
+  const service4 = useContentValue("footer", "service_4", "Apoio em Assembleias");
+  const copyright = useContentValue("footer", "copyright", "© 2024 Nômade Administradora. Todos os direitos reservados.");
   const siteName = useContentValue("geral", "site_name", "NÔMADE");
   const logoUrl = useImageValue("geral", "logo", "");
 
@@ -39,10 +44,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Serviços</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Gestão Financeira</li>
-              <li>Gestão Administrativa</li>
-              <li>Assessoria ao Síndico</li>
-              <li>Apoio em Assembleias</li>
+              <li>{service1}</li>
+              <li>{service2}</li>
+              <li>{service3}</li>
+              <li>{service4}</li>
             </ul>
           </div>
           <div>
@@ -55,7 +60,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          © 2024 Nômade Administradora. Todos os direitos reservados.
+          {copyright}
         </div>
       </div>
     </footer>
