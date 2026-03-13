@@ -15,6 +15,7 @@ export interface ContentBlock {
   bgColor?: string;
   textColor?: string;
   align?: "left" | "center" | "right";
+  buttonUrl?: string;
   imageFile?: File;
 }
 
