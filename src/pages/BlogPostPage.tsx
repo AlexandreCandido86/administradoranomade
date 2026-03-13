@@ -62,10 +62,10 @@ const BlogPostPage = () => {
             </div>
           )}
 
-          <article className="py-16">
+          <article className="py-10 md:py-16">
             <div className="container mx-auto px-4 max-w-3xl">
               <div
-                className="prose prose-invert prose-lg max-w-none text-foreground leading-relaxed whitespace-pre-wrap"
+                className="prose prose-invert prose-sm sm:prose-base md:prose-lg max-w-none text-foreground leading-relaxed whitespace-pre-wrap break-words"
               >
                 {(post as any).content || post.description}
               </div>
