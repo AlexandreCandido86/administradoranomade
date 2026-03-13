@@ -345,6 +345,10 @@ const AdminDashboard = () => {
           <div className="max-w-3xl">
             {isBlogSection ? (
               <BlogManager />
+            ) : isPagesSection ? (
+              <PagesManager />
+            ) : isMenuSection ? (
+              <MenuManager />
             ) : (
               <>
                 <div className="flex items-center justify-between mb-6">
