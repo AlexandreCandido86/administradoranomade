@@ -44,7 +44,7 @@ const BlogPage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section className="py-10 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           {isLoading ? (
             <div className="flex justify-center py-12">
