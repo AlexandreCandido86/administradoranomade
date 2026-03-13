@@ -64,7 +64,7 @@ const BlogPage = () => {
                         <span className="text-muted-foreground text-sm">Imagem do artigo</span>
                       )}
                     </div>
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6 flex flex-col flex-1">
                       <p className="text-xs text-primary font-semibold mb-2">
                         {new Date(post.published_at).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })}
                       </p>
