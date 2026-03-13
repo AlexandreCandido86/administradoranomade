@@ -170,6 +170,25 @@ export default function PageBlockEditor({ blocks, onChange }: Props) {
               <p className="text-xs text-muted-foreground">Linha divisória entre seções.</p>
             )}
 
+            {block.type === "button" && (
+              <div className="space-y-2">
+                <Label className="text-foreground text-xs">Texto do botão</Label>
+                <Input
+                  value={block.content}
+                  onChange={(e) => updateBlock(block.id, { content: e.target.value })}
+                  className="bg-background text-sm"
+                  placeholder="Clique aqui"
+                />
+                <Label className="text-foreground text-xs">Link do botão (URL)</Label>
+                <Input
+                  value={block.buttonUrl || ""}
+                  onChange={(e) => updateBlock(block.id, { buttonUrl: e.target.value })}
+                  className="bg-background text-sm"
+                  placeholder="https://exemplo.com ou /pagina/slug"
+                />
+              </div>
+            )}
+
             {/* Color & alignment options for text and divider */}
             {(block.type === "text" || block.type === "divider" || block.type === "image") && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-border">
