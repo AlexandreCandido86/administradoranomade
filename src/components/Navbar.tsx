@@ -3,8 +3,10 @@ import { Menu, X, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
-const navItems = [
+const defaultNavItems = [
   { label: "Início", href: "/" },
   { label: "Quem Somos", href: "/quem-somos" },
   { label: "Serviços", href: "/servicos" },
@@ -20,6 +22,26 @@ const Navbar = () => {
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
   const siteName = useContentValue("geral", "site_name", "NÔMADE");
   const logoUrl = useImageValue("geral", "logo", "");
+
+  const { data: menuItems } = useQuery({
+    queryKey: ["menu_items"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("menu_items" as any)
+        .select("*")
+        .eq("visible", true)
+        .order("position", { ascending: true });
+      if (error) throw error;
+      return data as any[];
+    },
+  });
+
+  // Use dynamic menu if items exist, otherwise fallback to default
+  const navItems = menuItems && menuItems.length > 0
+    ? menuItems.map((item: any) => ({ label: item.label, href: item.url || "/" }))
+    : defaultNavItems;
+
+  const isExternal = (href: string) => href.startsWith("http");
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -38,6 +60,14 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => {
             const isActive = location.pathname === item.href;
+            if (isExternal(item.href)) {
+              return (
+                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                  className="text-sm font-medium transition-colors hover:text-primary text-foreground">
+                  {item.label}
+                </a>
+              );
+            }
             return (
               <Link
                 key={item.label}
@@ -55,7 +85,7 @@ const Navbar = () => {
             <User className="w-4 h-4" />
             Área Admin
           </Link>
-          <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2 whitespace-nowrap text-xs xl:text-sm">
+          <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 font-semibold gap-2 whitespace-nowrap text-xs xl:text-sm">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="w-4 h-4 flex-shrink-0" />
               CONDOMÍNIO ONLINE
@@ -70,15 +100,26 @@ const Navbar = () => {
 
       {mobileOpen && (
         <div className="lg:hidden bg-background border-t border-border px-4 pb-4">
-          {navItems.map((item) => (
-            <Link key={item.label} to={item.href} className="block py-3 text-sm font-medium text-foreground hover:text-primary border-b border-border" onClick={() => setMobileOpen(false)}>
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            if (isExternal(item.href)) {
+              return (
+                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                  className="block py-3 text-sm font-medium text-foreground hover:text-primary border-b border-border"
+                  onClick={() => setMobileOpen(false)}>
+                  {item.label}
+                </a>
+              );
+            }
+            return (
+              <Link key={item.label} to={item.href} className="block py-3 text-sm font-medium text-foreground hover:text-primary border-b border-border" onClick={() => setMobileOpen(false)}>
+                {item.label}
+              </Link>
+            );
+          })}
           <Link to="/admin/login" className="block py-3 text-sm font-medium text-muted-foreground hover:text-foreground border-b border-border" onClick={() => setMobileOpen(false)}>
             Área Admin
           </Link>
-          <Button asChild className="mt-4 w-full bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2">
+          <Button asChild className="mt-4 w-full bg-primary text-primary-foreground hover:bg-primary/80 font-semibold gap-2">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="w-4 h-4" />
               CONDOMÍNIO ONLINE
