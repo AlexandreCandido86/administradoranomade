@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useSiteContent, useUpsertContent, useSiteImages, useUpsertImage } from "@/hooks/useSiteContent";
-import { LogOut, Save, Image, FileText, Loader2, Palette, Plus, Trash2, Edit2, Menu, X } from "lucide-react";
+import { LogOut, Save, Image, FileText, Loader2, Palette, Plus, Trash2, Edit2, Menu, X, LayoutList, FileStack } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { siteDefaults } from "@/data/siteDefaults";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
