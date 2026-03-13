@@ -551,6 +551,7 @@ function BlogManager() {
     setForm({
       title: post.title,
       description: post.description,
+      content: (post as any).content || "",
       published_at: post.published_at ? post.published_at.slice(0, 16) : "",
       image_url: post.image_url || "",
     });
