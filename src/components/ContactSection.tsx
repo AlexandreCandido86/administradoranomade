@@ -21,9 +21,9 @@ const ContactSection = () => {
             <Phone className="w-5 h-5 text-primary-foreground" />
             <span className="text-primary-foreground">{phone}</span>
           </div>
-          <div className="flex items-center gap-3">
-            <Mail className="w-5 h-5 text-primary-foreground" />
-            <span className="text-primary-foreground">{email}</span>
+          <div className="flex items-center gap-3 min-w-0">
+            <Mail className="w-5 h-5 text-primary-foreground flex-shrink-0" />
+            <span className="text-primary-foreground break-all">{email}</span>
           </div>
           <div className="flex items-center gap-3">
             <MapPin className="w-5 h-5 text-primary-foreground" />
