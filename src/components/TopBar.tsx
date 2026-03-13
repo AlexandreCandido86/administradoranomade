@@ -10,6 +10,8 @@ const TopBar = () => {
   const instagramVisible = useContentValue("topbar", "instagram_visible", "true");
   const linkedinUrl = useContentValue("topbar", "linkedin_url", "");
   const linkedinVisible = useContentValue("topbar", "linkedin_visible", "true");
+  const youtubeUrl = useContentValue("topbar", "youtube_url", "");
+  const youtubeVisible = useContentValue("topbar", "youtube_visible", "true");
 
   return (
     <div className="hidden md:block bg-background border-b border-border">
