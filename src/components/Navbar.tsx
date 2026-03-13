@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
 
 const navItems = [
   { label: "Início", href: "/" },
@@ -18,13 +18,21 @@ const Navbar = () => {
   const location = useLocation();
   const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
+  const siteName = useContentValue("geral", "site_name", "NÔMADE");
+  const logoUrl = useImageValue("geral", "logo", "");
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-primary-foreground text-sm">N</div>
-          <span className="text-lg font-bold text-foreground tracking-wide">NÔMADE</span>
+          {logoUrl ? (
+            <img src={logoUrl} alt={siteName} className="h-8 w-auto object-contain" />
+          ) : (
+            <>
+              <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-primary-foreground text-sm">N</div>
+              <span className="text-lg font-bold text-foreground tracking-wide">{siteName}</span>
+            </>
+          )}
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
