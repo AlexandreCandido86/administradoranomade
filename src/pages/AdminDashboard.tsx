@@ -111,6 +111,8 @@ const sections = [
     { key: "testimonial_3_role", label: "Depoimento 3 - Cargo", type: "text" },
   ], images: [] },
   { id: "blog", label: "📝 Blog (Posts)", fields: [], images: [] },
+  { id: "pages", label: "📄 Páginas", fields: [], images: [] },
+  { id: "menu", label: "🗂️ Menu do Site", fields: [], images: [] },
   { id: "blog_page", label: "Página Blog (Textos)", fields: [
     { key: "title", label: "Título", type: "text" },
     { key: "intro", label: "Introdução", type: "textarea" },
