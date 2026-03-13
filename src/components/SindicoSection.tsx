@@ -27,7 +27,7 @@ const SindicoSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="relative">
             {mainImage && <img src={mainImage} alt="Síndico Profissional" className="rounded-lg w-full max-h-[450px] object-cover" />}
-            <div className="absolute bottom-6 left-6 bg-card/90 backdrop-blur-sm p-4 rounded-lg border border-border">
+            <div className="mt-4 md:mt-0 md:absolute md:bottom-6 md:left-6 bg-card/90 backdrop-blur-sm p-4 rounded-lg border border-border">
               <p className="text-sm text-muted-foreground">{cardSubtitle}</p>
               <p className="text-lg font-bold text-foreground">{cardText}</p>
             </div>
