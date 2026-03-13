@@ -479,7 +479,7 @@ function BlogManager() {
   const { toast } = useToast();
   const qc = useQueryClient();
   const [editing, setEditing] = useState<any>(null);
-  const [form, setForm] = useState({ title: "", description: "", published_at: "", image_url: "" });
+  const [form, setForm] = useState({ title: "", description: "", content: "", published_at: "", image_url: "" });
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const { data: posts, isLoading } = useQuery({
@@ -506,6 +506,7 @@ function BlogManager() {
       const payload = {
         title: form.title,
         description: form.description,
+        content: form.content,
         image_url: imageUrl,
         published_at: form.published_at ? new Date(form.published_at).toISOString() : new Date().toISOString(),
       };
@@ -541,7 +542,7 @@ function BlogManager() {
 
   const resetForm = () => {
     setEditing(null);
-    setForm({ title: "", description: "", published_at: "", image_url: "" });
+    setForm({ title: "", description: "", content: "", published_at: "", image_url: "" });
     setImageFile(null);
   };
 
@@ -550,6 +551,7 @@ function BlogManager() {
     setForm({
       title: post.title,
       description: post.description,
+      content: (post as any).content || "",
       published_at: post.published_at ? post.published_at.slice(0, 16) : "",
       image_url: post.image_url || "",
     });
@@ -571,8 +573,12 @@ function BlogManager() {
           <Input value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="bg-muted/50" />
         </div>
         <div className="space-y-2">
-          <Label className="text-foreground">Descrição</Label>
-          <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} rows={4} className="bg-muted/50" />
+          <Label className="text-foreground">Descrição (resumo exibido no card)</Label>
+          <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} rows={3} className="bg-muted/50" />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-foreground">Conteúdo completo do post</Label>
+          <Textarea value={form.content} onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))} rows={10} className="bg-muted/50" placeholder="Escreva o conteúdo completo do post aqui..." />
         </div>
         <div className="space-y-2">
           <Label className="text-foreground">Data de publicação</Label>

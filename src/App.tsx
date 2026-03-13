@@ -11,6 +11,7 @@ import QuemSomosPage from "./pages/QuemSomosPage.tsx";
 import ServicosPage from "./pages/ServicosPage.tsx";
 import SindicosPage from "./pages/SindicosPage.tsx";
 import BlogPage from "./pages/BlogPage.tsx";
+import BlogPostPage from "./pages/BlogPostPage.tsx";
 import ContatoPage from "./pages/ContatoPage.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/servicos" element={<ServicosPage />} />
             <Route path="/sindicos" element={<SindicosPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/contato" element={<ContatoPage />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
