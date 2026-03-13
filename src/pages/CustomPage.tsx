@@ -9,11 +9,12 @@ import { Button } from "@/components/ui/button";
 
 interface ContentBlock {
   id: string;
-  type: "text" | "image" | "video" | "social" | "divider";
+  type: "text" | "image" | "video" | "social" | "divider" | "button";
   content: string;
   bgColor?: string;
   textColor?: string;
   align?: "left" | "center" | "right";
+  buttonUrl?: string;
 }
 
 const getYouTubeId = (url: string) => {
@@ -103,6 +104,28 @@ function BlockRenderer({ block }: { block: ContentBlock }) {
                 {block.content}
               </a>
             )}
+          </div>
+        </div>
+      );
+    }
+
+    case "button": {
+      const isExternal = block.buttonUrl?.startsWith("http");
+      return (
+        <div className={`py-6 md:py-10 px-4 ${alignClass(block.align)}`} style={style}>
+          <div className="container mx-auto max-w-4xl">
+            <a
+              href={block.buttonUrl || "#"}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="inline-block px-8 py-3 rounded-lg font-semibold text-base md:text-lg transition-all hover:opacity-90 shadow-md"
+              style={{
+                backgroundColor: block.bgColor || "hsl(var(--primary))",
+                color: block.textColor || "hsl(var(--primary-foreground))",
+              }}
+            >
+              {block.content || "Clique aqui"}
+            </a>
           </div>
         </div>
       );

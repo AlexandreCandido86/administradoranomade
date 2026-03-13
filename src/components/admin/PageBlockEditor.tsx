@@ -5,16 +5,17 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Plus, Trash2, ArrowUp, ArrowDown, Type, Image, Video, Share2, Palette,
-  GripVertical, ChevronDown, ChevronUp,
+  GripVertical, ChevronDown, ChevronUp, MousePointerClick,
 } from "lucide-react";
 
 export interface ContentBlock {
   id: string;
-  type: "text" | "image" | "video" | "social" | "divider";
+  type: "text" | "image" | "video" | "social" | "divider" | "button";
   content: string;
   bgColor?: string;
   textColor?: string;
   align?: "left" | "center" | "right";
+  buttonUrl?: string;
   imageFile?: File;
 }
 
@@ -31,6 +32,7 @@ const BLOCK_TYPES = [
   { type: "video" as const, icon: Video, label: "Vídeo" },
   { type: "social" as const, icon: Share2, label: "Rede Social" },
   { type: "divider" as const, icon: GripVertical, label: "Divisor" },
+  { type: "button" as const, icon: MousePointerClick, label: "Botão" },
 ];
 
 export default function PageBlockEditor({ blocks, onChange }: Props) {
@@ -168,8 +170,27 @@ export default function PageBlockEditor({ blocks, onChange }: Props) {
               <p className="text-xs text-muted-foreground">Linha divisória entre seções.</p>
             )}
 
+            {block.type === "button" && (
+              <div className="space-y-2">
+                <Label className="text-foreground text-xs">Texto do botão</Label>
+                <Input
+                  value={block.content}
+                  onChange={(e) => updateBlock(block.id, { content: e.target.value })}
+                  className="bg-background text-sm"
+                  placeholder="Clique aqui"
+                />
+                <Label className="text-foreground text-xs">Link do botão (URL)</Label>
+                <Input
+                  value={block.buttonUrl || ""}
+                  onChange={(e) => updateBlock(block.id, { buttonUrl: e.target.value })}
+                  className="bg-background text-sm"
+                  placeholder="https://exemplo.com ou /pagina/slug"
+                />
+              </div>
+            )}
+
             {/* Color & alignment options for text and divider */}
-            {(block.type === "text" || block.type === "divider" || block.type === "image") && (
+            {(block.type === "text" || block.type === "divider" || block.type === "image" || block.type === "button") && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-border">
                 <div className="space-y-1">
                   <Label className="text-foreground text-xs flex items-center gap-1">
