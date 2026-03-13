@@ -55,9 +55,9 @@ const Navbar = () => {
             <User className="w-4 h-4" />
             Área Admin
           </Link>
-          <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2">
+          <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold gap-2 whitespace-nowrap text-xs xl:text-sm">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 flex-shrink-0" />
               CONDOMÍNIO ONLINE
             </a>
           </Button>
