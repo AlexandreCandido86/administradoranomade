@@ -54,10 +54,10 @@ const BlogPage = () => {
             <p className="text-center text-muted-foreground">Nenhum post publicado ainda.</p>
           ) : (
             <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
                 {visiblePosts.map((post) => (
-                  <article key={post.id} className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
-                    <div className="h-48 bg-muted flex items-center justify-center overflow-hidden">
+                  <article key={post.id} className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors flex flex-col">
+                    <div className="h-40 sm:h-48 bg-muted flex items-center justify-center overflow-hidden">
                       {post.image_url ? (
                         <img src={post.image_url} alt={post.title} className="w-full h-full object-cover" />
                       ) : (
