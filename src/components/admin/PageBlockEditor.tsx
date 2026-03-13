@@ -32,6 +32,7 @@ const BLOCK_TYPES = [
   { type: "video" as const, icon: Video, label: "Vídeo" },
   { type: "social" as const, icon: Share2, label: "Rede Social" },
   { type: "divider" as const, icon: GripVertical, label: "Divisor" },
+  { type: "button" as const, icon: MousePointerClick, label: "Botão" },
 ];
 
 export default function PageBlockEditor({ blocks, onChange }: Props) {
