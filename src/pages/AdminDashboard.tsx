@@ -506,6 +506,7 @@ function BlogManager() {
       const payload = {
         title: form.title,
         description: form.description,
+        content: form.content,
         image_url: imageUrl,
         published_at: form.published_at ? new Date(form.published_at).toISOString() : new Date().toISOString(),
       };
