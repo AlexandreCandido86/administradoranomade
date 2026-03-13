@@ -42,13 +42,13 @@ const BlogPostPage = () => {
         </div>
       ) : (
         <>
-          <section className="py-16 bg-dark-surface">
+          <section className="py-10 md:py-16 bg-dark-surface">
             <div className="container mx-auto px-4 text-center">
               <p className="text-xs text-primary font-semibold mb-3">
                 {new Date(post.published_at).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" })}
               </p>
-              <h1 className="section-title text-3xl md:text-4xl lg:text-5xl mb-4 max-w-3xl mx-auto">{post.title}</h1>
-              <p className="text-muted-foreground max-w-2xl mx-auto">{post.description}</p>
+              <h1 className="section-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4 max-w-3xl mx-auto px-2">{post.title}</h1>
+              <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto px-2">{post.description}</p>
             </div>
           </section>
 
@@ -57,7 +57,7 @@ const BlogPostPage = () => {
               <img
                 src={post.image_url}
                 alt={post.title}
-                className="w-full max-w-4xl mx-auto rounded-lg object-cover max-h-[500px]"
+                className="w-full max-w-4xl mx-auto rounded-lg object-cover max-h-[300px] sm:max-h-[400px] md:max-h-[500px]"
               />
             </div>
           )}
