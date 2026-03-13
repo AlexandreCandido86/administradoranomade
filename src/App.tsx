@@ -13,6 +13,7 @@ import SindicosPage from "./pages/SindicosPage.tsx";
 import BlogPage from "./pages/BlogPage.tsx";
 import BlogPostPage from "./pages/BlogPostPage.tsx";
 import ContatoPage from "./pages/ContatoPage.tsx";
+import CustomPage from "./pages/CustomPage.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
