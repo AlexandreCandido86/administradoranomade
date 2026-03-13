@@ -44,7 +44,7 @@ const ContatoPage = () => {
                 <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">E-mail</h3>
-                  <p className="text-muted-foreground">{email}</p>
+                  <p className="text-muted-foreground break-all">{email}</p>
                 </div>
               </div>
               <div className="bg-card border border-border rounded-lg p-8 flex items-start gap-4">

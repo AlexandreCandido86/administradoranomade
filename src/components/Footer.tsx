@@ -50,12 +50,12 @@ const Footer = () => {
               <li>{service4}</li>
             </ul>
           </div>
-          <div>
+          <div className="min-w-0">
             <h4 className="font-semibold text-foreground mb-4">Contato</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2 text-sm text-muted-foreground break-all">
               <li>{phone}</li>
               <li>{email}</li>
-              <li>{address}</li>
+              <li className="break-words">{address}</li>
             </ul>
           </div>
         </div>
