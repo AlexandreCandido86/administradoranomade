@@ -1,5 +1,8 @@
 // Default text values matching the fallbacks used across the site components
 export const siteDefaults: Record<string, Record<string, string>> = {
+  geral: {
+    site_name: "NÔMADE",
+  },
   hero: {
     label: "〰〰 NÔMADE ADMINISTRADORA",
     title: "Administração condominial de",
