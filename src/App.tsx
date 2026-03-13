@@ -13,6 +13,7 @@ import SindicosPage from "./pages/SindicosPage.tsx";
 import BlogPage from "./pages/BlogPage.tsx";
 import BlogPostPage from "./pages/BlogPostPage.tsx";
 import ContatoPage from "./pages/ContatoPage.tsx";
+import CustomPage from "./pages/CustomPage.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/contato" element={<ContatoPage />} />
+            <Route path="/pagina/:slug" element={<CustomPage />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

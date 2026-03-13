@@ -6,11 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useSiteContent, useUpsertContent, useSiteImages, useUpsertImage } from "@/hooks/useSiteContent";
-import { LogOut, Save, Image, FileText, Loader2, Palette, Plus, Trash2, Edit2, Menu, X } from "lucide-react";
+import { LogOut, Save, Image, FileText, Loader2, Palette, Plus, Trash2, Edit2, Menu, X, LayoutList, FileStack } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { siteDefaults } from "@/data/siteDefaults";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import PagesManager from "@/components/admin/PagesManager";
+import MenuManager from "@/components/admin/MenuManager";
 
 const sections = [
   { id: "geral", label: "⚙️ Geral (Logo e Nome)", fields: [
@@ -109,6 +111,8 @@ const sections = [
     { key: "testimonial_3_role", label: "Depoimento 3 - Cargo", type: "text" },
   ], images: [] },
   { id: "blog", label: "📝 Blog (Posts)", fields: [], images: [] },
+  { id: "pages", label: "📄 Páginas", fields: [], images: [] },
+  { id: "menu", label: "🗂️ Menu do Site", fields: [], images: [] },
   { id: "blog_page", label: "Página Blog (Textos)", fields: [
     { key: "title", label: "Título", type: "text" },
     { key: "intro", label: "Introdução", type: "textarea" },
@@ -235,6 +239,8 @@ const AdminDashboard = () => {
 
   const currentSection = sections.find((s) => s.id === activeSection)!;
   const isBlogSection = activeSection === "blog";
+  const isPagesSection = activeSection === "pages";
+  const isMenuSection = activeSection === "menu";
   const isColorSection = activeSection === "colors";
 
   const getDefault = (sectionId: string, key: string) => {
@@ -339,6 +345,10 @@ const AdminDashboard = () => {
           <div className="max-w-3xl">
             {isBlogSection ? (
               <BlogManager />
+            ) : isPagesSection ? (
+              <PagesManager />
+            ) : isMenuSection ? (
+              <MenuManager />
             ) : (
               <>
                 <div className="flex items-center justify-between mb-6">

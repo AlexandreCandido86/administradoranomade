@@ -47,6 +47,80 @@ export type Database = {
         }
         Relationships: []
       }
+      custom_pages: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: string
+          image_url: string | null
+          published: boolean | null
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          published?: boolean | null
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          published?: boolean | null
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      menu_items: {
+        Row: {
+          created_at: string
+          id: string
+          label: string
+          page_id: string | null
+          position: number
+          updated_at: string
+          url: string | null
+          visible: boolean | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          label: string
+          page_id?: string | null
+          position?: number
+          updated_at?: string
+          url?: string | null
+          visible?: boolean | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          label?: string
+          page_id?: string | null
+          position?: number
+          updated_at?: string
+          url?: string | null
+          visible?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "menu_items_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "custom_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       site_content: {
         Row: {
           created_at: string
