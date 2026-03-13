@@ -239,6 +239,8 @@ const AdminDashboard = () => {
 
   const currentSection = sections.find((s) => s.id === activeSection)!;
   const isBlogSection = activeSection === "blog";
+  const isPagesSection = activeSection === "pages";
+  const isMenuSection = activeSection === "menu";
   const isColorSection = activeSection === "colors";
 
   const getDefault = (sectionId: string, key: string) => {
