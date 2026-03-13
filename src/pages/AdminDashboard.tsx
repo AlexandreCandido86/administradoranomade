@@ -542,7 +542,7 @@ function BlogManager() {
 
   const resetForm = () => {
     setEditing(null);
-    setForm({ title: "", description: "", published_at: "", image_url: "" });
+    setForm({ title: "", description: "", content: "", published_at: "", image_url: "" });
     setImageFile(null);
   };
 
