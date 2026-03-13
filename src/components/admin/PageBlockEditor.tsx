@@ -190,7 +190,7 @@ export default function PageBlockEditor({ blocks, onChange }: Props) {
             )}
 
             {/* Color & alignment options for text and divider */}
-            {(block.type === "text" || block.type === "divider" || block.type === "image") && (
+            {(block.type === "text" || block.type === "divider" || block.type === "image" || block.type === "button") && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-border">
                 <div className="space-y-1">
                   <Label className="text-foreground text-xs flex items-center gap-1">
