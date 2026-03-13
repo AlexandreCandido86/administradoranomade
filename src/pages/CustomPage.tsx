@@ -109,6 +109,28 @@ function BlockRenderer({ block }: { block: ContentBlock }) {
       );
     }
 
+    case "button": {
+      const isExternal = block.buttonUrl?.startsWith("http");
+      return (
+        <div className={`py-6 md:py-10 px-4 ${alignClass(block.align)}`} style={style}>
+          <div className="container mx-auto max-w-4xl">
+            <a
+              href={block.buttonUrl || "#"}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="inline-block px-8 py-3 rounded-lg font-semibold text-base md:text-lg transition-all hover:opacity-90 shadow-md"
+              style={{
+                backgroundColor: block.bgColor || "hsl(var(--primary))",
+                color: block.textColor || "hsl(var(--primary-foreground))",
+              }}
+            >
+              {block.content || "Clique aqui"}
+            </a>
+          </div>
+        </div>
+      );
+    }
+
     case "divider":
       return (
         <div className="py-4 px-4" style={style}>
