@@ -2,17 +2,18 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Plus, Trash2, Edit2, Save, Loader2, FileText, Eye, EyeOff } from "lucide-react";
+import PageBlockEditor, { type ContentBlock } from "./PageBlockEditor";
 
 export default function PagesManager() {
   const { toast } = useToast();
   const qc = useQueryClient();
   const [editing, setEditing] = useState<any>(null);
-  const [form, setForm] = useState({ title: "", slug: "", content: "", image_url: "", published: true });
+  const [form, setForm] = useState({ title: "", slug: "", image_url: "", published: true });
+  const [blocks, setBlocks] = useState<ContentBlock[]>([]);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const { data: pages, isLoading } = useQuery({
@@ -30,6 +31,22 @@ export default function PagesManager() {
   const generateSlug = (title: string) =>
     title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
+  const uploadBlockImages = async (blockList: ContentBlock[]): Promise<ContentBlock[]> => {
+    const result: ContentBlock[] = [];
+    for (const block of blockList) {
+      if (block.type === "image" && block.imageFile) {
+        const filePath = `pages/${Date.now()}-${block.imageFile.name}`;
+        const { error } = await supabase.storage.from("site-images").upload(filePath, block.imageFile, { upsert: true });
+        if (error) throw error;
+        const { data: urlData } = supabase.storage.from("site-images").getPublicUrl(filePath);
+        result.push({ ...block, content: urlData.publicUrl, imageFile: undefined });
+      } else {
+        result.push({ ...block, imageFile: undefined });
+      }
+    }
+    return result;
+  };
+
   const saveMutation = useMutation({
     mutationFn: async () => {
       let imageUrl = form.image_url;
@@ -41,8 +58,17 @@ export default function PagesManager() {
         imageUrl = urlData.publicUrl;
       }
 
+      const uploadedBlocks = await uploadBlockImages(blocks);
+      const serializable = uploadedBlocks.map(({ imageFile: _, ...rest }) => rest);
+
       const slug = form.slug || generateSlug(form.title);
-      const payload = { title: form.title, slug, content: form.content, image_url: imageUrl, published: form.published };
+      const payload = {
+        title: form.title,
+        slug,
+        content: JSON.stringify(serializable),
+        image_url: imageUrl,
+        published: form.published,
+      };
 
       if (editing) {
         const { error } = await supabase.from("custom_pages" as any).update(payload).eq("id", editing.id);
@@ -73,8 +99,19 @@ export default function PagesManager() {
 
   const resetForm = () => {
     setEditing(null);
-    setForm({ title: "", slug: "", content: "", image_url: "", published: true });
+    setForm({ title: "", slug: "", image_url: "", published: true });
+    setBlocks([]);
     setImageFile(null);
+  };
+
+  const parseBlocks = (content: string): ContentBlock[] => {
+    try {
+      const parsed = JSON.parse(content);
+      if (Array.isArray(parsed)) return parsed;
+    } catch {}
+    // Legacy plain text → single text block
+    if (content) return [{ id: "legacy", type: "text", content, align: "left" }];
+    return [];
   };
 
   const startEdit = (page: any) => {
@@ -82,10 +119,10 @@ export default function PagesManager() {
     setForm({
       title: page.title,
       slug: page.slug,
-      content: page.content || "",
       image_url: page.image_url || "",
       published: page.published ?? true,
     });
+    setBlocks(parseBlocks(page.content || ""));
     setImageFile(null);
   };
 
@@ -125,19 +162,11 @@ export default function PagesManager() {
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label className="text-foreground">Conteúdo da página</Label>
-          <Textarea
-            value={form.content}
-            onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
-            rows={8}
-            className="bg-muted/50"
-            placeholder="Escreva o conteúdo da página..."
-          />
-        </div>
+        {/* Block Editor */}
+        <PageBlockEditor blocks={blocks} onChange={setBlocks} />
 
         <div className="space-y-2">
-          <Label className="text-foreground">Imagem de capa</Label>
+          <Label className="text-foreground">Imagem de capa (opcional)</Label>
           {(form.image_url || imageFile) && (
             <img
               src={imageFile ? URL.createObjectURL(imageFile) : form.image_url}
