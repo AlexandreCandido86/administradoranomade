@@ -130,6 +130,11 @@ const sections = [
     { key: "phone", label: "Telefone", type: "text" },
     { key: "email", label: "E-mail", type: "text" },
     { key: "address", label: "Endereço", type: "text" },
+    { key: "service_1", label: "Serviço 1 (lista)", type: "text" },
+    { key: "service_2", label: "Serviço 2 (lista)", type: "text" },
+    { key: "service_3", label: "Serviço 3 (lista)", type: "text" },
+    { key: "service_4", label: "Serviço 4 (lista)", type: "text" },
+    { key: "copyright", label: "Texto de copyright", type: "text" },
   ], images: [] },
   { id: "colors", label: "🎨 Cores do Site", fields: [
     { key: "primary", label: "Cor Principal (dourado/destaque)", type: "color" },

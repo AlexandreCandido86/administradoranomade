@@ -126,6 +126,11 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     phone: "(11) 99999-9999",
     email: "contato@nomade.com.br",
     address: "São Paulo, SP",
+    service_1: "Gestão Financeira",
+    service_2: "Gestão Administrativa",
+    service_3: "Assessoria ao Síndico",
+    service_4: "Apoio em Assembleias",
+    copyright: "© 2024 Nômade Administradora. Todos os direitos reservados.",
   },
   colors: {
     primary: "42 100% 50%",
