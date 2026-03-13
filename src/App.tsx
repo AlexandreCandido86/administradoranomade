@@ -11,6 +11,7 @@ import QuemSomosPage from "./pages/QuemSomosPage.tsx";
 import ServicosPage from "./pages/ServicosPage.tsx";
 import SindicosPage from "./pages/SindicosPage.tsx";
 import BlogPage from "./pages/BlogPage.tsx";
+import BlogPostPage from "./pages/BlogPostPage.tsx";
 import ContatoPage from "./pages/ContatoPage.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
