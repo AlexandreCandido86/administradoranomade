@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Plus, Trash2, ArrowUp, ArrowDown, Type, Image, Video, Share2, Palette,
-  GripVertical, ChevronDown, ChevronUp,
+  GripVertical, ChevronDown, ChevronUp, MousePointerClick,
 } from "lucide-react";
 
 export interface ContentBlock {
