@@ -479,7 +479,7 @@ function BlogManager() {
   const { toast } = useToast();
   const qc = useQueryClient();
   const [editing, setEditing] = useState<any>(null);
-  const [form, setForm] = useState({ title: "", description: "", published_at: "", image_url: "" });
+  const [form, setForm] = useState({ title: "", description: "", content: "", published_at: "", image_url: "" });
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const { data: posts, isLoading } = useQuery({
