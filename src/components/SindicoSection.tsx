@@ -27,7 +27,7 @@ const SindicoSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="relative">
             {mainImage && <img src={mainImage} alt="Síndico Profissional" className="rounded-lg w-full max-h-[450px] object-cover" />}
-            <div className="absolute bottom-6 left-6 bg-card/90 backdrop-blur-sm p-4 rounded-lg border border-border">
+            <div className="mt-4 md:mt-0 md:absolute md:bottom-6 md:left-6 bg-card/90 backdrop-blur-sm p-4 rounded-lg border border-border">
               <p className="text-sm text-muted-foreground">{cardSubtitle}</p>
               <p className="text-lg font-bold text-foreground">{cardText}</p>
             </div>
@@ -37,7 +37,7 @@ const SindicoSection = () => {
             <p className="section-label mb-2">{label}</p>
             <h2 className="section-title mb-6">{title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
               {diferenciais.map((d) => (
                 <div key={d.label} className="flex items-center gap-3 bg-card border border-border rounded-lg p-3">
                   <d.icon className="w-5 h-5 text-primary flex-shrink-0" />

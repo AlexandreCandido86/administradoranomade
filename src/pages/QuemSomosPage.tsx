@@ -31,11 +31,11 @@ const QuemSomosPage = () => {
 
   const features = [feature1, feature2, feature3, feature4];
   const stats = [
-  { number: stat1Num, label: stat1Label },
-  { number: stat2Num, label: stat2Label },
-  { number: stat3Num, label: stat3Label },
-  { number: stat4Num, label: stat4Label }];
-
+    { number: stat1Num, label: stat1Label },
+    { number: stat2Num, label: stat2Label },
+    { number: stat3Num, label: stat3Label },
+    { number: stat4Num, label: stat4Label },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -57,20 +57,20 @@ const QuemSomosPage = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               {mainImage && <img src={mainImage} alt="Gestão condominial profissional" className="rounded-lg w-full object-cover max-h-[500px]" />}
-              <div className="absolute bottom-6 left-6 bg-primary text-primary-foreground p-4 rounded-lg">
+              <div className="mt-4 md:mt-0 md:absolute md:bottom-6 md:left-6 bg-primary text-primary-foreground p-4 rounded-lg inline-block">
                 <p className="text-3xl font-bold">{stat4Num}</p>
-                <p className="text-sm"> experiência</p>
+                <p className="text-sm"> experiência</p>
               </div>
             </div>
             <div>
               <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
               <ul className="space-y-4 mb-8">
-                {features.map((f) =>
-                <li key={f} className="flex items-center gap-3 text-foreground">
+                {features.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-foreground">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                     {f}
                   </li>
-                )}
+                ))}
               </ul>
             </div>
           </div>
@@ -97,23 +97,9 @@ const QuemSomosPage = () => {
         </div>
       </section>
 
-      {/* Stats */}
-      
-
-
-
-
-
-
-
-
-
-
-      
-
       <Footer />
-    </div>);
-
+    </div>
+  );
 };
 
 export default QuemSomosPage;
