@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <Link to="/" className="flex items-center gap-2">
           {logoUrl ? (
-            <img src={logoUrl} alt={siteName} className="h-8 w-auto object-contain" />
+            <img src={logoUrl} alt={siteName} className="h-12 w-auto object-contain" />
           ) : (
             <>
               <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-primary-foreground text-sm">N</div>
