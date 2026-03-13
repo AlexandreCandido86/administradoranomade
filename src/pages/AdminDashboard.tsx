@@ -125,6 +125,16 @@ const sections = [
     { key: "intro", label: "Introdução da página", type: "textarea" },
     { key: "hours", label: "Horário de atendimento", type: "text" },
   ], images: [] },
+  { id: "topbar", label: "📌 Barra Superior", fields: [
+    { key: "phone", label: "Telefone", type: "text" },
+    { key: "email", label: "E-mail", type: "text" },
+    { key: "facebook_visible", label: "Facebook - Visível", type: "toggle" },
+    { key: "facebook_url", label: "Facebook - URL", type: "text" },
+    { key: "instagram_visible", label: "Instagram - Visível", type: "toggle" },
+    { key: "instagram_url", label: "Instagram - URL", type: "text" },
+    { key: "linkedin_visible", label: "LinkedIn - Visível", type: "toggle" },
+    { key: "linkedin_url", label: "LinkedIn - URL", type: "text" },
+  ], images: [] },
   { id: "footer", label: "Rodapé", fields: [
     { key: "description", label: "Descrição", type: "textarea" },
     { key: "phone", label: "Telefone", type: "text" },

@@ -132,6 +132,16 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     service_4: "Apoio em Assembleias",
     copyright: "© 2024 Nômade Administradora. Todos os direitos reservados.",
   },
+  topbar: {
+    phone: "(11) 99999-9999",
+    email: "contato@nomade.com.br",
+    facebook_visible: "true",
+    facebook_url: "",
+    instagram_visible: "true",
+    instagram_url: "",
+    linkedin_visible: "true",
+    linkedin_url: "",
+  },
   colors: {
     primary: "42 100% 50%",
     background: "220 20% 10%",
