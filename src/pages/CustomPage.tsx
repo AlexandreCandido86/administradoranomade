@@ -9,11 +9,12 @@ import { Button } from "@/components/ui/button";
 
 interface ContentBlock {
   id: string;
-  type: "text" | "image" | "video" | "social" | "divider";
+  type: "text" | "image" | "video" | "social" | "divider" | "button";
   content: string;
   bgColor?: string;
   textColor?: string;
   align?: "left" | "center" | "right";
+  buttonUrl?: string;
 }
 
 const getYouTubeId = (url: string) => {
