@@ -141,6 +141,8 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     instagram_url: "",
     linkedin_visible: "true",
     linkedin_url: "",
+    youtube_visible: "true",
+    youtube_url: "",
   },
   colors: {
     primary: "42 100% 50%",

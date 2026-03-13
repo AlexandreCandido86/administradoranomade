@@ -134,6 +134,8 @@ const sections = [
     { key: "instagram_url", label: "Instagram - URL", type: "text" },
     { key: "linkedin_visible", label: "LinkedIn - Visível", type: "toggle" },
     { key: "linkedin_url", label: "LinkedIn - URL", type: "text" },
+    { key: "youtube_visible", label: "YouTube - Visível", type: "toggle" },
+    { key: "youtube_url", label: "YouTube - URL", type: "text" },
   ], images: [] },
   { id: "footer", label: "Rodapé", fields: [
     { key: "description", label: "Descrição", type: "textarea" },
