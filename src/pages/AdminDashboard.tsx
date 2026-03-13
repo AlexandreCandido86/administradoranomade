@@ -11,6 +11,8 @@ import { useToast } from "@/hooks/use-toast";
 import { siteDefaults } from "@/data/siteDefaults";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import PagesManager from "@/components/admin/PagesManager";
+import MenuManager from "@/components/admin/MenuManager";
 
 const sections = [
   { id: "geral", label: "⚙️ Geral (Logo e Nome)", fields: [
