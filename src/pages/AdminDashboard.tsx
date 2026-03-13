@@ -573,8 +573,12 @@ function BlogManager() {
           <Input value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="bg-muted/50" />
         </div>
         <div className="space-y-2">
-          <Label className="text-foreground">Descrição</Label>
-          <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} rows={4} className="bg-muted/50" />
+          <Label className="text-foreground">Descrição (resumo exibido no card)</Label>
+          <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} rows={3} className="bg-muted/50" />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-foreground">Conteúdo completo do post</Label>
+          <Textarea value={form.content} onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))} rows={10} className="bg-muted/50" placeholder="Escreva o conteúdo completo do post aqui..." />
         </div>
         <div className="space-y-2">
           <Label className="text-foreground">Data de publicação</Label>
