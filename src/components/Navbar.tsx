@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useSiteImages } from "@/hooks/useSiteContent";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -21,7 +21,8 @@ const Navbar = () => {
   const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
   const siteName = useContentValue("geral", "site_name", "NÔMADE");
-  const logoUrl = useImageValue("geral", "logo", "");
+  const { data: imageData, isLoading: logoLoading } = useSiteImages("geral");
+  const logoUrl = logoLoading ? undefined : (imageData?.find((d: any) => d.key === "logo")?.image_url ?? "");
 
   const { data: menuItems } = useQuery({
     queryKey: ["menu_items"],
@@ -46,8 +47,10 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <Link to="/" className="flex items-center gap-2">
-          {logoUrl ? (
+        <Link to="/" className="flex items-center gap-2 min-h-[48px]">
+          {logoUrl === undefined ? (
+            <div className="h-12 w-24" />
+          ) : logoUrl ? (
             <img src={logoUrl} alt={siteName} className="h-12 w-auto object-contain" />
           ) : (
             <>
