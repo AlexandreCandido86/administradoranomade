@@ -21,7 +21,8 @@ const Navbar = () => {
   const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
   const whatsappUrl = `https://wa.me/55${whatsapp.replace(/\D/g, "")}`;
   const siteName = useContentValue("geral", "site_name", "NÔMADE");
-  const logoUrl = useImageValue("geral", "logo", "");
+  const { data: imageData, isLoading: logoLoading } = useSiteImages("geral");
+  const logoUrl = logoLoading ? undefined : (imageData?.find((d: any) => d.key === "logo")?.image_url ?? "");
 
   const { data: menuItems } = useQuery({
     queryKey: ["menu_items"],
