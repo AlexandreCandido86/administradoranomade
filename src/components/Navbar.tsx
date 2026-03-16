@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useSiteImages } from "@/hooks/useSiteContent";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
