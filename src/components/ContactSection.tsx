@@ -1,7 +1,7 @@
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const ContactSection = () => {
   const label = useContentValue("contact", "label", "FALE CONOSCO");

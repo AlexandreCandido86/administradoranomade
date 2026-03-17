@@ -1,5 +1,5 @@
 import { Quote } from "lucide-react";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const TestimonialsSection = () => {
   const label = useContentValue("testimonials", "label", "〰〰 Depoimentos 〰〰");
