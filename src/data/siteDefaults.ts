@@ -82,7 +82,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     detail: "Na Nômade, entendemos que a função de síndico exige dedicação, conhecimento e suporte constante. Por isso, desenvolvemos um modelo de parceria que vai além da administração tradicional.",
   },
   testimonials: {
-    label: "〰〰 Depoimentos 〰〰",
+    label: "Depoimentos",
     title: "Síndicos que confiam na Nômade",
     testimonial_1_visible: "true",
     testimonial_1_text: "A Nômade transformou a administração do nosso condomínio. Relatórios claros, atendimento ágil e total transparência nas finanças. Recomendo com toda a certeza!",
