@@ -14,7 +14,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     tagline: '"Excelência na gestão, tranquilidade para você."',
   },
   about: {
-    label: "〰〰 Conheça a Nômade 〰〰",
+    label: "Conheça a Nômade",
     title: "Por que escolher a Nômade?",
     description: "Somos uma nova geração de administradora de condomínios. Nascemos com uma visão clara: modernizar a gestão condominial e transformar a forma como síndicos e condôminos vivenciam a administração do seu patrimônio. Unimos gestão estratégica, suporte humanizado e soluções práticas para tornar o dia a dia do condomínio mais leve, seguro e organizado.",
     feature_1: "Gestão financeira completa e transparente",
