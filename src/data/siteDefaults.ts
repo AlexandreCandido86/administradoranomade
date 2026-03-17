@@ -2,6 +2,7 @@
 export const siteDefaults: Record<string, Record<string, string>> = {
   geral: {
     site_name: "NÔMADE",
+    decorator: "〰〰",
   },
   hero: {
     label: "〰〰 NÔMADE ADMINISTRADORA",
