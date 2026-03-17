@@ -32,7 +32,7 @@ const AboutSection = () => {
           </div>
 
           <div>
-            <p className="section-label mb-2">{label}</p>
+            <p className="section-label mb-2">{dec} {label} {dec}</p>
             <h2 className="section-title mb-6 text-black">{title}</h2>
             <p className="text-black leading-relaxed mb-8">{description}</p>
             <ul className="space-y-4 mb-8">

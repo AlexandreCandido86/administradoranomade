@@ -35,7 +35,7 @@ const SindicoSection = () => {
           </div>
 
           <div>
-            <p className="section-label mb-2">{label}</p>
+            <p className="section-label mb-2">{dec} {label} {dec}</p>
             <h2 className="section-title mb-6">{title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
