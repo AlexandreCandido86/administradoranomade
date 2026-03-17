@@ -5,7 +5,8 @@ import aboutImg from "@/assets/about-img.jpg";
 import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 
 const AboutSection = () => {
-  const label = useContentValue("about", "label", "〰〰 Conheça a Nômade 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("about", "label", "Conheça a Nômade");
   const title = useContentValue("about", "title", "Por que escolher a Nômade?");
   const description = useContentValue("about", "description", "Somos uma nova geração de administradora de condomínios. Nascemos com uma visão clara: modernizar a gestão condominial e transformar a forma como síndicos e condôminos vivenciam a administração do seu patrimônio. Unimos gestão estratégica, suporte humanizado e soluções práticas para tornar o dia a dia do condomínio mais leve, seguro e organizado.");
   const feature1 = useContentValue("about", "feature_1", "Gestão financeira completa e transparente");

@@ -14,7 +14,8 @@ const diferenciais = [
 ];
 
 const SindicoSection = () => {
-  const label = useContentValue("sindico", "label", "〰〰 Diferenciais");
+  const dec = useDecorator();
+  const label = useContentValue("sindico", "label", "Diferenciais");
   const title = useContentValue("sindico", "title", "Suporte completo para o síndico");
   const description = useContentValue("sindico", "description", "Sabemos que o síndico precisa de mais do que uma administradora operacional. Precisa de parceria, agilidade e informações confiáveis para tomar decisões com segurança.");
   const cardSubtitle = useContentValue("sindico", "card_subtitle", "Para Síndicos Profissionais");

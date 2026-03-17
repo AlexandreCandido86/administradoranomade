@@ -34,7 +34,7 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container mx-auto px-4 py-20">
-        <p className="section-label mb-4">{label}</p>
+        <p className="section-label mb-4">{dec} {label}</p>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-2xl mb-6">
           {title}{" "}
           <span className="text-primary">{titleHighlight}</span>

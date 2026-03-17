@@ -2,7 +2,8 @@ import { Quote } from "lucide-react";
 import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const TestimonialsSection = () => {
-  const label = useContentValue("testimonials", "label", "〰〰 Depoimentos 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("testimonials", "label", "Depoimentos");
   const title = useContentValue("testimonials", "title", "Síndicos que confiam na Nômade");
   const t1Text = useContentValue("testimonials", "testimonial_1_text", "A Nômade transformou a administração do nosso condomínio. Relatórios claros, atendimento ágil e total transparência nas finanças. Recomendo com toda a certeza!");
   const t1Name = useContentValue("testimonials", "testimonial_1_name", "Carlos Mendes");

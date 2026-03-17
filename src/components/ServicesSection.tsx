@@ -12,7 +12,8 @@ const defaultServices = [
 ];
 
 const ServicesSection = () => {
-  const label = useContentValue("services", "label", "〰〰 Nossos Serviços 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("services", "label", "Nossos Serviços");
   const title = useContentValue("services", "title", "Leve a mudança para o seu condomínio");
   const ctaTitle = useContentValue("services", "cta_title", "Precisa de uma solução personalizada?");
   const ctaDesc = useContentValue("services", "cta_desc", "Entre em contato e descubra como podemos ajudar o seu condomínio.");

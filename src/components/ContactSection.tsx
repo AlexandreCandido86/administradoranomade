@@ -16,7 +16,7 @@ const ContactSection = () => {
   return (
     <section id="contato" className="py-20 bg-primary">
       <div className="container mx-auto px-4 text-center">
-        <p className="text-primary-foreground/80 text-sm font-semibold tracking-[0.25em] uppercase mb-2">〰〰 {label} 〰〰</p>
+        <p className="text-primary-foreground/80 text-sm font-semibold tracking-[0.25em] uppercase mb-2">{dec} {label} {dec}</p>
         <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">{title}</h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
           <div className="flex items-center gap-3">
