@@ -32,7 +32,7 @@ const TestimonialsSection = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h2 className="section-title">{title}</h2>
         </div>
         <div className={`grid gap-6 ${testimonials.length === 1 ? "max-w-lg mx-auto" : testimonials.length === 2 ? "md:grid-cols-2 max-w-3xl mx-auto" : "md:grid-cols-2 lg:grid-cols-3"}`}>

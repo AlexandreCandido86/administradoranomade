@@ -22,7 +22,7 @@ const ServicesSection = () => {
     <section id="servicos" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h2 className="section-title">{title}</h2>
         </div>
 
