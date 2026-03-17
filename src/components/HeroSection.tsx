@@ -5,7 +5,8 @@ import heroBg from "@/assets/hero-bg.jpg";
 import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 
 const HeroSection = () => {
-  const label = useContentValue("hero", "label", "〰〰 NÔMADE ADMINISTRADORA");
+  const dec = useDecorator();
+  const label = useContentValue("hero", "label", "NÔMADE ADMINISTRADORA");
   const title = useContentValue("hero", "title", "Administração condominial de");
   const titleHighlight = useContentValue("hero", "title_highlight", "alto padrão.");
   const subtitle = useContentValue("hero", "subtitle", "Gestão profissional, transparente e humanizada.\nCuidamos do seu condomínio como se fosse nosso.");
