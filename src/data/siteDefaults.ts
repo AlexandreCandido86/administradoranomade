@@ -71,7 +71,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     service_5_title_detail: "",
   },
   sindico: {
-    label: "〰〰 Diferenciais",
+    label: "Diferenciais",
     title: "Suporte completo para o síndico",
     description: "Sabemos que o síndico precisa de mais do que uma administradora operacional. Precisa de parceria, agilidade e informações confiáveis para tomar decisões com segurança.",
     card_subtitle: "Para Síndicos Profissionais",
