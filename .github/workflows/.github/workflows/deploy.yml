@@ -1,0 +1,31 @@
+name: Deploy para HostGator
+
+on:
+  workflow_dispatch: # Permite que você rode manualmente se quiser
+  push:
+    branches:
+      - main # Toda vez que você salvar algo na branch principal, ele atualiza
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código do GitHub
+        uses: actions/checkout@v3
+
+      - name: Instalar dependências e Gerar o Site (Build)
+        run: |
+          npm install
+          npm run build
+
+      - name: Enviar arquivos para HostGator via SSH
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: 2222 # Porta padrão da HostGator para SSH
+          source: "dist/*" # Pasta onde o Lovable gera o site pronto
+          target: "public_html/" # Pasta do seu site na HostGator
+          strip_components: 1 # Para não criar uma pasta 'dist' dentro do site
