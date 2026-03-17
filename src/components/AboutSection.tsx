@@ -2,7 +2,7 @@ import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import aboutImg from "@/assets/about-img.jpg";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 
 const AboutSection = () => {
   const label = useContentValue("about", "label", "〰〰 Conheça a Nômade 〰〰");

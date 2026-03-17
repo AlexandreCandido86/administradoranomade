@@ -2,7 +2,7 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Database, BarChart3, Headphones, Shield, Zap, Handshake } from "lucide-react";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 import sindicoImg from "@/assets/sindico-img.jpg";
 
 const diferenciais = [

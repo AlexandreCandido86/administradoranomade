@@ -1,7 +1,7 @@
 import { DollarSign, FileText, Users, MessageSquare, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const defaultServices = [
   { icon: DollarSign, titleKey: "service_1_title", descKey: "service_1_desc", defaultTitle: "Gestão Financeira", defaultDesc: "Controle rigoroso de receitas e despesas, boletos, balancetes claros e prestação de contas transparente." },

@@ -2,7 +2,7 @@ import { Database, BarChart3, Headphones, Shield, Zap, Handshake } from "lucide-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import sindicoImg from "@/assets/sindico-img.jpg";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 
 const diferenciais = [
   { icon: Database, label: "Dados Organizados" },
