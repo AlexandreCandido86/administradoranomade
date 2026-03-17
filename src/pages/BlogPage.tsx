@@ -39,7 +39,7 @@ const BlogPage = () => {
 
       <section className="py-10 md:py-16 bg-dark-surface">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-label mb-2">〰〰 BLOG 〰〰</p>
+          <p className="section-label mb-2">{dec} BLOG {dec}</p>
           <h1 className="section-title text-2xl sm:text-3xl md:text-5xl mb-3 md:mb-4">{pageTitle}</h1>
           <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto px-2">{pageIntro}</p>
         </div>

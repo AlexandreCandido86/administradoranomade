@@ -32,7 +32,7 @@ const SindicosPage = () => {
 
       <section className="py-16 bg-dark-surface">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h1 className="section-title text-4xl md:text-5xl mb-4">{title}</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">{pageIntro}</p>
         </div>
