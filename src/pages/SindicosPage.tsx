@@ -2,7 +2,7 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Database, BarChart3, Headphones, Shield, Zap, Handshake } from "lucide-react";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 import sindicoImg from "@/assets/sindico-img.jpg";
 
 const diferenciais = [
@@ -15,7 +15,8 @@ const diferenciais = [
 ];
 
 const SindicosPage = () => {
-  const label = useContentValue("sindico", "label", "〰〰 Diferenciais");
+  const dec = useDecorator();
+  const label = useContentValue("sindico", "label", "Diferenciais");
   const title = useContentValue("sindico", "title", "Suporte completo para o síndico");
   const description = useContentValue("sindico", "description", "Sabemos que o síndico precisa de mais do que uma administradora operacional. Precisa de parceria, agilidade e informações confiáveis para tomar decisões com segurança.");
   const cardSubtitle = useContentValue("sindico", "card_subtitle", "Para Síndicos Profissionais");
@@ -31,7 +32,7 @@ const SindicosPage = () => {
 
       <section className="py-16 bg-dark-surface">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h1 className="section-title text-4xl md:text-5xl mb-4">{title}</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">{pageIntro}</p>
         </div>

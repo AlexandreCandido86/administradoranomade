@@ -2,9 +2,10 @@
 export const siteDefaults: Record<string, Record<string, string>> = {
   geral: {
     site_name: "NÔMADE",
+    decorator: "〰〰",
   },
   hero: {
-    label: "〰〰 NÔMADE ADMINISTRADORA",
+    label: "NÔMADE ADMINISTRADORA",
     title: "Administração condominial de",
     title_highlight: "alto padrão.",
     subtitle: "Gestão profissional, transparente e humanizada.\nCuidamos do seu condomínio como se fosse nosso.",
@@ -13,7 +14,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     tagline: '"Excelência na gestão, tranquilidade para você."',
   },
   about: {
-    label: "〰〰 Conheça a Nômade 〰〰",
+    label: "Conheça a Nômade",
     title: "Por que escolher a Nômade?",
     description: "Somos uma nova geração de administradora de condomínios. Nascemos com uma visão clara: modernizar a gestão condominial e transformar a forma como síndicos e condôminos vivenciam a administração do seu patrimônio. Unimos gestão estratégica, suporte humanizado e soluções práticas para tornar o dia a dia do condomínio mais leve, seguro e organizado.",
     feature_1: "Gestão financeira completa e transparente",
@@ -36,7 +37,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     values: "Transparência, Comprometimento, Inovação, Respeito e Excelência.",
   },
   services: {
-    label: "〰〰 Nossos Serviços 〰〰",
+    label: "Nossos Serviços",
     title: "Leve a mudança para o seu condomínio",
     service_1_title: "Gestão Financeira",
     service_1_desc: "Controle rigoroso de receitas e despesas, boletos, balancetes claros e prestação de contas transparente.",
@@ -70,7 +71,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     service_5_title_detail: "",
   },
   sindico: {
-    label: "〰〰 Diferenciais",
+    label: "Diferenciais",
     title: "Suporte completo para o síndico",
     description: "Sabemos que o síndico precisa de mais do que uma administradora operacional. Precisa de parceria, agilidade e informações confiáveis para tomar decisões com segurança.",
     card_subtitle: "Para Síndicos Profissionais",
@@ -81,7 +82,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     detail: "Na Nômade, entendemos que a função de síndico exige dedicação, conhecimento e suporte constante. Por isso, desenvolvemos um modelo de parceria que vai além da administração tradicional.",
   },
   testimonials: {
-    label: "〰〰 Depoimentos 〰〰",
+    label: "Depoimentos",
     title: "Síndicos que confiam na Nômade",
     testimonial_1_visible: "true",
     testimonial_1_text: "A Nômade transformou a administração do nosso condomínio. Relatórios claros, atendimento ágil e total transparência nas finanças. Recomendo com toda a certeza!",

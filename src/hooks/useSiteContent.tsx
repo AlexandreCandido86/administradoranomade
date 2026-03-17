@@ -20,6 +20,10 @@ export function useSiteContent(section?: string) {
   });
 }
 
+export function useDecorator() {
+  return useContentValue("geral", "decorator", "〰〰");
+}
+
 export function useContentValue(section: string, key: string, fallback: string) {
   const { data, isLoading } = useSiteContent(section);
   if (isLoading) return fallback;

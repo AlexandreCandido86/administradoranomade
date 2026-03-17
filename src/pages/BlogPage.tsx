@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import { Loader2, ArrowRight } from "lucide-react";
 const POSTS_PER_PAGE = 3;
 
 const BlogPage = () => {
+  const dec = useDecorator();
   const pageTitle = useContentValue("blog_page", "title", "Blog");
   const pageIntro = useContentValue("blog_page", "intro", "Fique por dentro das últimas novidades sobre gestão condominial, dicas para síndicos e muito mais.");
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
@@ -38,7 +39,7 @@ const BlogPage = () => {
 
       <section className="py-10 md:py-16 bg-dark-surface">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-label mb-2">〰〰 BLOG 〰〰</p>
+          <p className="section-label mb-2">{dec} BLOG {dec}</p>
           <h1 className="section-title text-2xl sm:text-3xl md:text-5xl mb-3 md:mb-4">{pageTitle}</h1>
           <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto px-2">{pageIntro}</p>
         </div>

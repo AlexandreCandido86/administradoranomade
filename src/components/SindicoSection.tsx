@@ -2,7 +2,7 @@ import { Database, BarChart3, Headphones, Shield, Zap, Handshake } from "lucide-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import sindicoImg from "@/assets/sindico-img.jpg";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 
 const diferenciais = [
   { icon: Database, label: "Dados Organizados" },
@@ -14,7 +14,8 @@ const diferenciais = [
 ];
 
 const SindicoSection = () => {
-  const label = useContentValue("sindico", "label", "〰〰 Diferenciais");
+  const dec = useDecorator();
+  const label = useContentValue("sindico", "label", "Diferenciais");
   const title = useContentValue("sindico", "title", "Suporte completo para o síndico");
   const description = useContentValue("sindico", "description", "Sabemos que o síndico precisa de mais do que uma administradora operacional. Precisa de parceria, agilidade e informações confiáveis para tomar decisões com segurança.");
   const cardSubtitle = useContentValue("sindico", "card_subtitle", "Para Síndicos Profissionais");
@@ -34,7 +35,7 @@ const SindicoSection = () => {
           </div>
 
           <div>
-            <p className="section-label mb-2">{label}</p>
+            <p className="section-label mb-2">{dec} {label} {dec}</p>
             <h2 className="section-title mb-6">{title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">{description}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">

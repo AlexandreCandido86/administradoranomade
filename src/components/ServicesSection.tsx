@@ -1,7 +1,7 @@
 import { DollarSign, FileText, Users, MessageSquare, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const defaultServices = [
   { icon: DollarSign, titleKey: "service_1_title", descKey: "service_1_desc", defaultTitle: "Gestão Financeira", defaultDesc: "Controle rigoroso de receitas e despesas, boletos, balancetes claros e prestação de contas transparente." },
@@ -12,7 +12,8 @@ const defaultServices = [
 ];
 
 const ServicesSection = () => {
-  const label = useContentValue("services", "label", "〰〰 Nossos Serviços 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("services", "label", "Nossos Serviços");
   const title = useContentValue("services", "title", "Leve a mudança para o seu condomínio");
   const ctaTitle = useContentValue("services", "cta_title", "Precisa de uma solução personalizada?");
   const ctaDesc = useContentValue("services", "cta_desc", "Entre em contato e descubra como podemos ajudar o seu condomínio.");
@@ -21,7 +22,7 @@ const ServicesSection = () => {
     <section id="servicos" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h2 className="section-title">{title}</h2>
         </div>
 

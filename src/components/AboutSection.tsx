@@ -2,10 +2,11 @@ import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import aboutImg from "@/assets/about-img.jpg";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 
 const AboutSection = () => {
-  const label = useContentValue("about", "label", "〰〰 Conheça a Nômade 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("about", "label", "Conheça a Nômade");
   const title = useContentValue("about", "title", "Por que escolher a Nômade?");
   const description = useContentValue("about", "description", "Somos uma nova geração de administradora de condomínios. Nascemos com uma visão clara: modernizar a gestão condominial e transformar a forma como síndicos e condôminos vivenciam a administração do seu patrimônio. Unimos gestão estratégica, suporte humanizado e soluções práticas para tornar o dia a dia do condomínio mais leve, seguro e organizado.");
   const feature1 = useContentValue("about", "feature_1", "Gestão financeira completa e transparente");
@@ -31,7 +32,7 @@ const AboutSection = () => {
           </div>
 
           <div>
-            <p className="section-label mb-2">{label}</p>
+            <p className="section-label mb-2">{dec} {label} {dec}</p>
             <h2 className="section-title mb-6 text-black">{title}</h2>
             <p className="text-black leading-relaxed mb-8">{description}</p>
             <ul className="space-y-4 mb-8">

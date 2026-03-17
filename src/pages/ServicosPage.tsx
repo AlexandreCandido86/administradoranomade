@@ -2,7 +2,7 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { DollarSign, FileText, Users, MessageSquare, Calendar } from "lucide-react";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const defaultServices = [
   { icon: DollarSign, titleKey: "service_1_title", descKey: "service_1_desc", defaultTitle: "Gestão Financeira", defaultDesc: "Controle rigoroso de receitas e despesas, boletos, balancetes claros e prestação de contas transparente." },
@@ -13,7 +13,8 @@ const defaultServices = [
 ];
 
 const ServicosPage = () => {
-  const label = useContentValue("services", "label", "〰〰 Nossos Serviços 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("services", "label", "Nossos Serviços");
   const title = useContentValue("services", "title", "Leve a mudança para o seu condomínio");
   const pageIntro = useContentValue("services_page", "intro", "Conheça todos os nossos serviços de gestão condominial e descubra como podemos transformar o seu condomínio.");
 
@@ -24,7 +25,7 @@ const ServicosPage = () => {
 
       <section className="py-16 bg-dark-surface">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h1 className="section-title text-4xl md:text-5xl mb-4">{title}</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">{pageIntro}</p>
         </div>

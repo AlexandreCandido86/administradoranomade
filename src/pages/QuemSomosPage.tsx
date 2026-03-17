@@ -2,11 +2,12 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CheckCircle } from "lucide-react";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 import aboutImg from "@/assets/about-img.jpg";
 
 const QuemSomosPage = () => {
-  const label = useContentValue("about", "label", "〰〰 Conheça a Nômade 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("about", "label", "Conheça a Nômade");
   const title = useContentValue("about", "title", "Por que escolher a Nômade?");
   const description = useContentValue("about", "description", "Somos uma nova geração de administradora de condomínios. Nascemos com uma visão clara: modernizar a gestão condominial e transformar a forma como síndicos e condôminos vivenciam a administração do seu patrimônio. Unimos gestão estratégica, suporte humanizado e soluções práticas para tornar o dia a dia do condomínio mais leve, seguro e organizado.");
   const feature1 = useContentValue("about", "feature_1", "Gestão financeira completa e transparente");
@@ -45,7 +46,7 @@ const QuemSomosPage = () => {
       {/* Hero Banner */}
       <section className="py-16 bg-dark-surface">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h1 className="section-title text-4xl md:text-5xl mb-4">{title}</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">{pageIntro}</p>
         </div>

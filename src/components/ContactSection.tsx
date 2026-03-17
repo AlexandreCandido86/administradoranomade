@@ -1,9 +1,10 @@
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const ContactSection = () => {
+  const dec = useDecorator();
   const label = useContentValue("contact", "label", "FALE CONOSCO");
   const title = useContentValue("contact", "title", "Entre em contato com nossa equipe comercial e solicite orçamento para o seu condomínio.");
   const phone = useContentValue("contact", "phone", "(11) 99999-9999");
@@ -15,7 +16,7 @@ const ContactSection = () => {
   return (
     <section id="contato" className="py-20 bg-primary">
       <div className="container mx-auto px-4 text-center">
-        <p className="text-primary-foreground/80 text-sm font-semibold tracking-[0.25em] uppercase mb-2">〰〰 {label} 〰〰</p>
+        <p className="text-primary-foreground/80 text-sm font-semibold tracking-[0.25em] uppercase mb-2">{dec} {label} {dec}</p>
         <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">{title}</h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
           <div className="flex items-center gap-3">

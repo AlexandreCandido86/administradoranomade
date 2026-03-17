@@ -1,8 +1,9 @@
 import { Quote } from "lucide-react";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const TestimonialsSection = () => {
-  const label = useContentValue("testimonials", "label", "〰〰 Depoimentos 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("testimonials", "label", "Depoimentos");
   const title = useContentValue("testimonials", "title", "Síndicos que confiam na Nômade");
   const t1Text = useContentValue("testimonials", "testimonial_1_text", "A Nômade transformou a administração do nosso condomínio. Relatórios claros, atendimento ágil e total transparência nas finanças. Recomendo com toda a certeza!");
   const t1Name = useContentValue("testimonials", "testimonial_1_name", "Carlos Mendes");
@@ -31,7 +32,7 @@ const TestimonialsSection = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="section-label mb-2">{label}</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h2 className="section-title">{title}</h2>
         </div>
         <div className={`grid gap-6 ${testimonials.length === 1 ? "max-w-lg mx-auto" : testimonials.length === 2 ? "md:grid-cols-2 max-w-3xl mx-auto" : "md:grid-cols-2 lg:grid-cols-3"}`}>

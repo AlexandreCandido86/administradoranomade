@@ -2,10 +2,11 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
-import { useContentValue, useImageValue } from "@/hooks/useSiteContent";
+import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 
 const HeroSection = () => {
-  const label = useContentValue("hero", "label", "〰〰 NÔMADE ADMINISTRADORA");
+  const dec = useDecorator();
+  const label = useContentValue("hero", "label", "NÔMADE ADMINISTRADORA");
   const title = useContentValue("hero", "title", "Administração condominial de");
   const titleHighlight = useContentValue("hero", "title_highlight", "alto padrão.");
   const subtitle = useContentValue("hero", "subtitle", "Gestão profissional, transparente e humanizada.\nCuidamos do seu condomínio como se fosse nosso.");
@@ -33,7 +34,7 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container mx-auto px-4 py-20">
-        <p className="section-label mb-4">{label}</p>
+        <p className="section-label mb-4">{dec} {label}</p>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-2xl mb-6">
           {title}{" "}
           <span className="text-primary">{titleHighlight}</span>

@@ -2,9 +2,10 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
 const ContatoPage = () => {
+  const dec = useDecorator();
   const label = useContentValue("contact", "label", "FALE CONOSCO");
   const title = useContentValue("contact", "title", "Entre em contato com nossa equipe comercial e solicite orçamento para o seu condomínio.");
   const phone = useContentValue("contact", "phone", "(11) 99999-9999");
@@ -21,7 +22,7 @@ const ContatoPage = () => {
 
       <section className="py-16 bg-dark-surface">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-label mb-2">〰〰 {label} 〰〰</p>
+          <p className="section-label mb-2">{dec} {label} {dec}</p>
           <h1 className="section-title text-4xl md:text-5xl mb-4">Contato</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">{pageIntro}</p>
         </div>

@@ -17,6 +17,7 @@ import MenuManager from "@/components/admin/MenuManager";
 const sections = [
   { id: "geral", label: "⚙️ Geral (Logo e Nome)", fields: [
     { key: "site_name", label: "Nome do site", type: "text" },
+    { key: "decorator", label: "Ícone decorativo das seções (ex: 〰〰)", type: "text" },
   ], images: [{ key: "logo", label: "Logotipo do site" }] },
   { id: "hero", label: "Hero (Banner Principal)", fields: [
     { key: "label", label: "Label superior", type: "text" },
