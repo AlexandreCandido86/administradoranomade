@@ -37,7 +37,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     values: "Transparência, Comprometimento, Inovação, Respeito e Excelência.",
   },
   services: {
-    label: "〰〰 Nossos Serviços 〰〰",
+    label: "Nossos Serviços",
     title: "Leve a mudança para o seu condomínio",
     service_1_title: "Gestão Financeira",
     service_1_desc: "Controle rigoroso de receitas e despesas, boletos, balancetes claros e prestação de contas transparente.",
