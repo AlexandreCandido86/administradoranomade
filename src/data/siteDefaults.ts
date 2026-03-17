@@ -5,7 +5,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     decorator: "〰〰",
   },
   hero: {
-    label: "〰〰 NÔMADE ADMINISTRADORA",
+    label: "NÔMADE ADMINISTRADORA",
     title: "Administração condominial de",
     title_highlight: "alto padrão.",
     subtitle: "Gestão profissional, transparente e humanizada.\nCuidamos do seu condomínio como se fosse nosso.",
