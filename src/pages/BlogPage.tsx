@@ -12,6 +12,7 @@ import { Loader2, ArrowRight } from "lucide-react";
 const POSTS_PER_PAGE = 3;
 
 const BlogPage = () => {
+  const dec = useDecorator();
   const pageTitle = useContentValue("blog_page", "title", "Blog");
   const pageIntro = useContentValue("blog_page", "intro", "Fique por dentro das últimas novidades sobre gestão condominial, dicas para síndicos e muito mais.");
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);

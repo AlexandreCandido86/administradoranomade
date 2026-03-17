@@ -13,7 +13,8 @@ const defaultServices = [
 ];
 
 const ServicosPage = () => {
-  const label = useContentValue("services", "label", "〰〰 Nossos Serviços 〰〰");
+  const dec = useDecorator();
+  const label = useContentValue("services", "label", "Nossos Serviços");
   const title = useContentValue("services", "title", "Leve a mudança para o seu condomínio");
   const pageIntro = useContentValue("services_page", "intro", "Conheça todos os nossos serviços de gestão condominial e descubra como podemos transformar o seu condomínio.");
 
