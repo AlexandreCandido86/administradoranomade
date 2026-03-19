@@ -11,7 +11,7 @@ const ContatoPage = () => {
   const title = useContentValue("contact", "title", "Entre em contato com nossa equipe comercial e solicite orçamento para o seu condomínio.");
   const phone = useContentValue("contact", "phone", "(11) 99999-9999");
   const email = useContentValue("contact", "email", "contato@nomade.com.br");
-  const address = useContentValue("contact", "address", "São Paulo, SP");
+  const address = useContentValue("contact", "address", "Campo Largo, PR");
   const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
   const pageIntro = useContentValue("contato_page", "intro", "Estamos à disposição para atender você. Entre em contato por qualquer um dos nossos canais.");
   const hours = useContentValue("contato_page", "hours", "Segunda a Sexta, das 9h às 18h");
