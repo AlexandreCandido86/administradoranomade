@@ -1,6 +1,7 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Database, BarChart3, Headphones, Shield, Zap, Handshake } from "lucide-react";
 import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 import sindicoImg from "@/assets/sindico-img.jpg";
