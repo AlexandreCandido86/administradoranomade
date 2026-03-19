@@ -17,7 +17,7 @@ const jsonLd = {
   "@type": "LocalBusiness",
   "name": "Nômade Administradora de Condomínios",
   "description": "Administradora de condomínios em Campo Largo, Paraná. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia.",
-  "url": "https://www.nomadecondominios.com.br",
+  "url": "https://www.nomadecondominios.com.br/",
   "address": { "@type": "PostalAddress", "addressLocality": "Campo Largo", "addressRegion": "PR", "addressCountry": "BR" },
   "serviceArea": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": -25.46, "longitude": -49.53 } },
   "sameAs": []
