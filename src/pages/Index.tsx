@@ -27,7 +27,7 @@ const Index = () => (
   <div className="min-h-screen bg-background">
     <SEOHead
       title="Nômade Administradora de Condomínios"
-      description="Administradora de condomínios em São Paulo. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia para seu condomínio."
+      description="Administradora de condomínios em Campo Largo, Paraná. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia para seu condomínio."
       canonical="/"
       jsonLd={jsonLd}
     />
