@@ -17,7 +17,7 @@ const jsonLd = {
   "@type": "LocalBusiness",
   "name": "Nômade Administradora de Condomínios",
   "description": "Administradora de condomínios em São Paulo. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia.",
-  "url": "https://administradoranomade.lovable.app",
+  "url": "https://www.nomadecondominios.com.br",
   "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
   "serviceArea": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": -23.55, "longitude": -46.63 } },
   "sameAs": []

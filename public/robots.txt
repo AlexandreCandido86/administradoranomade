@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
-Sitemap: https://administradoranomade.lovable.app/sitemap.xml
+Sitemap: https://www.nomadecondominios.com.br/sitemap.xml
