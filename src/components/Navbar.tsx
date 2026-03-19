@@ -46,12 +46,12 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <Link to="/" className="flex items-center gap-2 min-h-[48px]">
+      <div className="container mx-auto flex items-center justify-between py-2 px-4">
+        <Link to="/" className="flex items-center gap-2 min-h-[40px]">
           {logoUrl === undefined ? (
-            <div className="h-12 w-24" />
+            <div className="h-10 w-24" />
           ) : logoUrl ? (
-            <img src={logoUrl} alt={siteName} className="h-28 w-auto object-contain max-w-[280px]" />
+            <img src={logoUrl} alt={siteName} className="h-16 md:h-20 lg:h-24 w-auto object-contain max-w-[200px] lg:max-w-[260px]" />
           ) : (
             <>
               <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-primary-foreground text-sm">N</div>
