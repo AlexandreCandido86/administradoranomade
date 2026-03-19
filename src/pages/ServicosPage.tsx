@@ -1,6 +1,7 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { DollarSign, FileText, Users, MessageSquare, Calendar } from "lucide-react";
 import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
@@ -20,6 +21,7 @@ const ServicosPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Serviços" description="Conheça os serviços da Nômade: gestão financeira, administrativa, assessoria ao síndico, atendimento ao condômino e apoio em assembleias." canonical="/servicos" />
       <TopBar />
       <Navbar />
 

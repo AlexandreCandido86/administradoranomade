@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -34,6 +35,7 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Blog" description="Dicas de gestão condominial, novidades para síndicos e conteúdos sobre administração de condomínios. Blog da Nômade Administradora." canonical="/blog" />
       <TopBar />
       <Navbar />
 

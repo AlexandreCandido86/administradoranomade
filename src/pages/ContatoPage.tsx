@@ -1,6 +1,7 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 
@@ -17,6 +18,7 @@ const ContatoPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Contato" description="Entre em contato com a Nômade Administradora de Condomínios. Solicite orçamento para gestão do seu condomínio em São Paulo." canonical="/contato" />
       <TopBar />
       <Navbar />
 

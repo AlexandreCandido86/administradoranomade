@@ -1,6 +1,7 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { CheckCircle } from "lucide-react";
 import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 import aboutImg from "@/assets/about-img.jpg";
@@ -40,6 +41,7 @@ const QuemSomosPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Quem Somos" description="Conheça a Nômade Administradora de Condomínios. Nossa história, missão, visão e valores na gestão condominial em São Paulo." canonical="/quem-somos" />
       <TopBar />
       <Navbar />
 
