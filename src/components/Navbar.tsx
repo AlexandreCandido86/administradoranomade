@@ -51,7 +51,7 @@ const Navbar = () => {
           {logoUrl === undefined ? (
             <div className="h-12 w-24" />
           ) : logoUrl ? (
-            <img src={logoUrl} alt={siteName} className="h-20 w-auto object-contain max-w-[220px]" />
+            <img src={logoUrl} alt={siteName} className="h-28 w-auto object-contain max-w-[280px]" />
           ) : (
             <>
               <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-primary-foreground text-sm">N</div>
