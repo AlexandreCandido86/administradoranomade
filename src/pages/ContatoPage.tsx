@@ -18,7 +18,7 @@ const ContatoPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead title="Contato" description="Entre em contato com a Nômade Administradora de Condomínios. Solicite orçamento para gestão do seu condomínio em São Paulo." canonical="/contato" />
+      <SEOHead title="Contato" description="Entre em contato com a Nômade Administradora de Condomínios. Solicite orçamento para gestão do seu condomínio em Campo Largo, Paraná." canonical="/contato" />
       <TopBar />
       <Navbar />
 
