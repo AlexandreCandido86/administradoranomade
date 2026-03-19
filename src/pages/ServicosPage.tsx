@@ -1,6 +1,7 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { DollarSign, FileText, Users, MessageSquare, Calendar } from "lucide-react";
 import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
 

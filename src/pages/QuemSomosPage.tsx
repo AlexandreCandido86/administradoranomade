@@ -1,6 +1,7 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { CheckCircle } from "lucide-react";
 import { useContentValue, useImageValue, useDecorator } from "@/hooks/useSiteContent";
 import aboutImg from "@/assets/about-img.jpg";
