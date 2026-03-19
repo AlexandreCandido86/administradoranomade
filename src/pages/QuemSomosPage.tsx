@@ -40,7 +40,7 @@ const QuemSomosPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <SEOHead title="Quem Somos" description="Conheça a Nômade Administradora de Condomínios. Nossa história, missão, visão e valores na gestão condominial em São Paulo." canonical="/quem-somos" />
       <TopBar />
       <Navbar />
 

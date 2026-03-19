@@ -28,6 +28,7 @@ const SindicosPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Síndicos" description="Suporte completo para síndicos profissionais. Ferramentas, dados e assessoria dedicada para gestão eficiente do condomínio." canonical="/sindicos" />
       <TopBar />
       <Navbar />
 

@@ -35,6 +35,7 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Blog" description="Dicas de gestão condominial, novidades para síndicos e conteúdos sobre administração de condomínios. Blog da Nômade Administradora." canonical="/blog" />
       <TopBar />
       <Navbar />
 

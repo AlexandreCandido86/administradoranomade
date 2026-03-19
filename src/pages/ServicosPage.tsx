@@ -21,6 +21,7 @@ const ServicosPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Serviços" description="Conheça os serviços da Nômade: gestão financeira, administrativa, assessoria ao síndico, atendimento ao condômino e apoio em assembleias." canonical="/servicos" />
       <TopBar />
       <Navbar />
 
