@@ -115,7 +115,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     title: "Entre em contato com nossa equipe comercial e solicite orçamento para o seu condomínio.",
     phone: "(11) 99999-9999",
     email: "contato@nomade.com.br",
-    address: "São Paulo, SP",
+    address: "Campo Largo, PR",
     whatsapp: "(11) 99999-9999",
   },
   contato_page: {
@@ -126,7 +126,7 @@ export const siteDefaults: Record<string, Record<string, string>> = {
     description: "Administração condominial de alto padrão. Gestão profissional, transparente e humanizada.",
     phone: "(11) 99999-9999",
     email: "contato@nomade.com.br",
-    address: "São Paulo, SP",
+    address: "Campo Largo, PR",
     service_1: "Gestão Financeira",
     service_2: "Gestão Administrativa",
     service_3: "Assessoria ao Síndico",

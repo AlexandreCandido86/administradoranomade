@@ -5,7 +5,7 @@ const Footer = () => {
   const description = useContentValue("footer", "description", "Administração condominial de alto padrão. Gestão profissional, transparente e humanizada.");
   const phone = useContentValue("footer", "phone", "(11) 99999-9999");
   const email = useContentValue("footer", "email", "contato@nomade.com.br");
-  const address = useContentValue("footer", "address", "São Paulo, SP");
+  const address = useContentValue("footer", "address", "Campo Largo, PR");
   const service1 = useContentValue("footer", "service_1", "Gestão Financeira");
   const service2 = useContentValue("footer", "service_2", "Gestão Administrativa");
   const service3 = useContentValue("footer", "service_3", "Assessoria ao Síndico");

@@ -16,10 +16,10 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Nômade Administradora de Condomínios",
-  "description": "Administradora de condomínios em São Paulo. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia.",
+  "description": "Administradora de condomínios em Campo Largo, Paraná. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia.",
   "url": "https://www.nomadecondominios.com.br",
-  "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
-  "serviceArea": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": -23.55, "longitude": -46.63 } },
+  "address": { "@type": "PostalAddress", "addressLocality": "Campo Largo", "addressRegion": "PR", "addressCountry": "BR" },
+  "serviceArea": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": -25.46, "longitude": -49.53 } },
   "sameAs": []
 };
 
@@ -27,7 +27,7 @@ const Index = () => (
   <div className="min-h-screen bg-background">
     <SEOHead
       title="Nômade Administradora de Condomínios"
-      description="Administradora de condomínios em São Paulo. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia para seu condomínio."
+      description="Administradora de condomínios em Campo Largo, Paraná. Gestão financeira, assessoria ao síndico, atendimento humanizado e tecnologia para seu condomínio."
       canonical="/"
       jsonLd={jsonLd}
     />
