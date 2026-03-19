@@ -9,7 +9,7 @@ interface SEOHeadProps {
 }
 
 const SITE_NAME = "Nômade Administradora de Condomínios";
-const BASE_URL = "https://administradoranomade.lovable.app";
+const BASE_URL = "https://www.nomadecondominios.com.br";
 
 const SEOHead = ({ title, description, canonical, type = "website", jsonLd }: SEOHeadProps) => {
   const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
