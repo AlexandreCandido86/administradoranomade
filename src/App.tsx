@@ -49,6 +49,7 @@ const App = () => (
               <Route path="/blog/:id" element={<BlogPostPage />} />
               <Route path="/contato" element={<ContatoPage />} />
               <Route path="/pagina/:slug" element={<CustomPage />} />
+              <Route path="/:slug" element={<CustomPage />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminDashboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
