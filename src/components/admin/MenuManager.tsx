@@ -121,12 +121,42 @@ export default function MenuManager() {
     { label: "Contato", url: "/contato" },
   ];
 
+  const seedDefaultsMutation = useMutation({
+    mutationFn: async () => {
+      const items = builtInRoutes.map((r, i) => ({
+        label: r.label,
+        url: r.url,
+        position: i,
+        visible: true,
+      }));
+      const { error } = await supabase.from("menu_items" as any).insert(items);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["menu_items"] });
+      toast({ title: "Menu padrão carregado!" });
+    },
+    onError: (err: any) => toast({ title: "Erro", description: err?.message, variant: "destructive" }),
+  });
+
   return (
     <div>
       <h2 className="text-xl md:text-2xl font-bold text-foreground flex items-center gap-2 mb-6">
         <MenuIcon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
         🗂️ Gerenciar Menu
       </h2>
+
+      {(!menuItems || menuItems.length === 0) && (
+        <div className="bg-primary/10 border border-primary/30 rounded-lg p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <p className="text-sm text-foreground flex-1">
+            ⚡ Carregue os itens padrão do menu para começar a personalizar sem perder os links existentes.
+          </p>
+          <Button onClick={() => seedDefaultsMutation.mutate()} disabled={seedDefaultsMutation.isPending} className="bg-primary text-primary-foreground hover:bg-primary/80 gap-2 whitespace-nowrap">
+            {seedDefaultsMutation.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            Carregar Menu Padrão
+          </Button>
+        </div>
+      )}
 
       <div className="bg-card border border-border rounded-lg p-4 md:p-6 mb-8 space-y-4">
         <h3 className="font-semibold text-foreground">{editing ? "Editar Item" : "Novo Item do Menu"}</h3>
