@@ -23,6 +23,54 @@ jobs:
           mkdir -p hostgator-deploy
           cp -a dist/. hostgator-deploy/
 
+      - name: Validar build (index.html e tags obrigatórias)
+        run: |
+          set -e
+          INDEX="hostgator-deploy/index.html"
+
+          echo "🔍 Verificando se o index.html foi gerado..."
+          if [ ! -f "$INDEX" ]; then
+            echo "❌ ERRO: index.html não foi gerado em hostgator-deploy/"
+            exit 1
+          fi
+          echo "✅ index.html encontrado ($(wc -c < "$INDEX") bytes)"
+
+          echo "🔍 Verificando .htaccess..."
+          if [ ! -f "hostgator-deploy/.htaccess" ]; then
+            echo "❌ ERRO: .htaccess não foi incluído no deploy"
+            exit 1
+          fi
+          echo "✅ .htaccess encontrado"
+
+          echo "🔍 Verificando tag do Google Ads (AW-11548833977)..."
+          if ! grep -q "AW-11548833977" "$INDEX"; then
+            echo "❌ ERRO: Tag do Google Ads (AW-11548833977) não encontrada no index.html"
+            exit 1
+          fi
+          echo "✅ Tag Google Ads presente"
+
+          echo "🔍 Verificando script gtag.js..."
+          if ! grep -q "googletagmanager.com/gtag/js" "$INDEX"; then
+            echo "❌ ERRO: Script gtag.js não encontrado no index.html"
+            exit 1
+          fi
+          echo "✅ Script gtag.js presente"
+
+          echo "🔍 Verificando assets gerados (JS/CSS)..."
+          if [ ! -d "hostgator-deploy/assets" ] || [ -z "$(ls -A hostgator-deploy/assets 2>/dev/null)" ]; then
+            echo "❌ ERRO: Pasta assets/ vazia ou inexistente"
+            exit 1
+          fi
+          JS_COUNT=$(find hostgator-deploy/assets -name "*.js" | wc -l)
+          CSS_COUNT=$(find hostgator-deploy/assets -name "*.css" | wc -l)
+          echo "✅ Assets: $JS_COUNT arquivos JS, $CSS_COUNT arquivos CSS"
+          if [ "$JS_COUNT" -eq 0 ]; then
+            echo "❌ ERRO: Nenhum arquivo JS gerado"
+            exit 1
+          fi
+
+          echo "🎉 Build validada com sucesso. Prosseguindo para o deploy."
+
       - name: Enviar arquivos para HostGator via SSH
         uses: appleboy/scp-action@master
         with:
