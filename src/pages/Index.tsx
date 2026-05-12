@@ -3,6 +3,7 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import SEOHead from "@/components/SEOHead";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 // Lazy load sections below the fold
 const AboutSection = lazy(() => import("@/components/AboutSection"));
@@ -59,6 +60,7 @@ const Index = () => (
       <ContactSection />
       <Footer />
     </Suspense>
+    <WhatsAppFloat />
   </div>
 );
 
