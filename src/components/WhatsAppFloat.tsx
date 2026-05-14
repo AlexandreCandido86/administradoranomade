@@ -1,5 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { useContentValue } from "@/hooks/useSiteContent";
+import { trackLeadConversion } from "@/lib/gtagConversion";
 
 const WhatsAppFloat = () => {
   const whatsapp = useContentValue("contact", "whatsapp", "(11) 99999-9999");
@@ -10,6 +11,7 @@ const WhatsAppFloat = () => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackLeadConversion()}
       aria-label="Fale conosco no WhatsApp"
       className="group fixed bottom-6 right-6 z-50 flex items-center gap-0 hover:gap-3 bg-[#25D366] text-white shadow-lg rounded-full pl-4 pr-4 h-14 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl"
     >

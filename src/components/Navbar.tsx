@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useContentValue, useImageValue, useSiteImages } from "@/hooks/useSiteContent";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { trackLeadConversion } from "@/lib/gtagConversion";
 
 const defaultNavItems = [
   { label: "Início", href: "/" },
@@ -89,7 +90,7 @@ const Navbar = () => {
             Área Admin
           </Link>
           <Button asChild size="sm" className="bg-primary text-primary-foreground hover:bg-primary/80 font-semibold gap-1.5 whitespace-nowrap text-[11px] xl:text-xs px-3">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadConversion()}>
               <MessageCircle className="w-4 h-4 flex-shrink-0" />
               CONDOMÍNIO ONLINE
             </a>
@@ -123,7 +124,7 @@ const Navbar = () => {
             Área Admin
           </Link>
           <Button asChild className="mt-4 w-full bg-primary text-primary-foreground hover:bg-primary/80 font-semibold gap-2">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadConversion()}>
               <MessageCircle className="w-4 h-4" />
               CONDOMÍNIO ONLINE
             </a>

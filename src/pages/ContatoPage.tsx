@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
+import { trackLeadConversion } from "@/lib/gtagConversion";
 
 const ContatoPage = () => {
   const dec = useDecorator();
@@ -72,6 +73,7 @@ const ContatoPage = () => {
                 href={`https://wa.me/55${whatsapp.replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackLeadConversion()}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-md hover:bg-gold-dark transition-colors"
               >
                 Falar pelo WhatsApp
