@@ -2,6 +2,7 @@ import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { useContentValue, useDecorator } from "@/hooks/useSiteContent";
+import { trackLeadConversion } from "@/lib/gtagConversion";
 
 const ContactSection = () => {
   const dec = useDecorator();
@@ -33,7 +34,7 @@ const ContactSection = () => {
           </div>
         </div>
         <Button asChild className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold px-8 gap-2">
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4" /> FALE PELO WHATSAPP</a>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadConversion()}><MessageCircle className="w-4 h-4" /> FALE PELO WHATSAPP</a>
         </Button>
       </div>
     </section>
