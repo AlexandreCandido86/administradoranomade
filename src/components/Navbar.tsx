@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useContentValue, useImageValue, useSiteImages } from "@/hooks/useSiteContent";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { trackLeadConversion } from "@/lib/gtagConversion";
 
 const defaultNavItems = [
   { label: "Início", href: "/" },
